@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="lt"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b6e8a"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Atvykau">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Atvykau</title>
+<style>
+:root{--bg:#f2f8f8;--cd:#fff;--tx:#17262b;--mu:#62767c;--pr:#0b6e8a;--ok:#16874f;--okb:#dff4e8;--bd:#dde8ea;--wb:#fff0cc;--wt:#85560a;--erb:#fde8e6;--ert:#b3261e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0e1a1d;--cd:#16262a;--tx:#e6f0f1;--mu:#93a9ae;--pr:#3bb0d0;--ok:#5fd394;--okb:#133a28;--bd:#263a3f;--wb:#3a2f12;--wt:#f3c25e;--erb:#3b1a18;--ert:#ff9b94}}
+:root[data-theme=dark]{--bg:#0e1a1d;--cd:#16262a;--tx:#e6f0f1;--mu:#93a9ae;--pr:#3bb0d0;--ok:#5fd394;--okb:#133a28;--bd:#263a3f;--wb:#3a2f12;--wt:#f3c25e;--erb:#3b1a18;--ert:#ff9b94}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--tx);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow:hidden}
+#app{display:flex;flex-direction:column;height:100%;max-width:560px;margin:0 auto}
+main{flex:1;overflow-y:auto;padding:16px}
+nav{display:flex;background:var(--cd);border-top:1px solid var(--bd)}
+nav button{flex:1;border:0;background:none;color:var(--mu);font:inherit;font-size:12px;padding:8px 0;min-height:58px}
+nav span{display:block;font-size:22px}nav .on{color:var(--pr);font-weight:700}
+h2{font-size:24px;margin:.2em 0}h3{font-size:17px;margin:22px 0 6px}
+.mu{color:var(--mu)}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:16px;padding:14px;margin:10px 0}
+.row{display:flex;align-items:center;gap:12px}.g{flex:1;min-width:0}
+.th{width:56px;height:56px;border-radius:12px;object-fit:cover;background:var(--bd);flex:none}
+.btn,.btn2,.sm{border:0;border-radius:14px;font:inherit;font-weight:600;cursor:pointer}
+.btn{width:100%;min-height:54px;background:var(--pr);color:#fff;margin-top:14px}
+.btn2{min-height:48px;padding:0 16px;background:var(--bd);color:var(--tx);margin:8px 8px 0 0}
+.sm{min-height:44px;padding:0 14px;background:var(--pr);color:#fff}
+.btn:disabled,.big:disabled,.sm:disabled{opacity:.6}
+.big{width:min(68vw,250px);height:min(68vw,250px);border-radius:50%;border:0;background:var(--pr);color:#fff;font-family:inherit;font-size:23px;font-weight:700;line-height:1.3;box-shadow:0 0 0 14px color-mix(in srgb,var(--pr) 14%,transparent)}
+.big i{display:block;font-style:normal;font-size:56px}
+.cen{text-align:center;margin-top:28px}.cen p{max-width:300px;margin:26px auto 0}
+.bdg{background:var(--okb);color:var(--ok);padding:4px 10px;border-radius:99px;font-size:13px;font-weight:600;white-space:nowrap}.bdg.w{background:var(--wb);color:var(--wt)}
+.ok,.er{padding:12px;border-radius:12px;font-weight:600;margin-bottom:10px}.ok{background:var(--okb);color:var(--ok)}.er{background:var(--erb);color:var(--ert)}
+label{display:block;margin-top:12px;font-weight:600}
+input,select{width:100%;min-height:50px;border:1px solid var(--bd);border-radius:12px;padding:0 12px;font:inherit;background:var(--cd);color:var(--tx);margin-top:4px}
+.lg{padding-top:6vh}.logo{width:68px;height:68px;border-radius:20px;background:var(--pr);color:#fff;display:grid;place-items:center;font-size:36px}
+.lg h1{margin:12px 0 0;font-size:34px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{background:var(--wb);color:var(--wt);padding:8px 12px;border-radius:99px}
+.flt{display:grid;gap:8px;margin:10px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.gc{padding:8px;margin:0}
+.gc img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;background:var(--bd)}.gc .sm{width:100%;margin-top:6px}.gc .bdg{display:inline-block;margin-top:6px}
+.lnk{background:none;border:0;color:var(--pr);font:inherit;padding:8px 0}
+.pic{width:100%;border-radius:12px;margin-top:10px}
+.vid{aspect-ratio:16/9;background:#12262c;color:#fff;border-radius:16px;display:grid;place-items:center;text-align:center;margin:12px 0;padding:12px}.vid b{font-size:44px;display:block}
+.soc a{display:inline-block;margin:8px 8px 0 0;padding:12px 16px;border-radius:12px;background:var(--cd);border:1px solid var(--bd);color:var(--pr);font-weight:600;text-decoration:none}
+.lbx{position:fixed;inset:0;background:rgba(0,0,0,.88);display:grid;place-items:center;padding:16px;z-index:9}.lbx img{max-width:100%;max-height:100%;border-radius:12px}
+.vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}.who{font-size:13px;color:var(--mu);margin-bottom:8px}label.big{display:grid;place-items:center;text-align:center;cursor:pointer;margin:0 auto}label.big.off{pointer-events:none;opacity:.6}label.lnk{display:inline-block;margin-top:14px;cursor:pointer}
+.bdg.r{background:var(--erb);color:var(--ert)}.rj{background:var(--erb);color:var(--ert)}.rc{margin-top:8px;padding:8px 10px;border-radius:10px;background:var(--erb);color:var(--ert);font-size:14px}.acts{display:flex;gap:8px;margin-top:10px}.acts .sm{flex:1}.gc .acts{flex-direction:column;gap:0}.sd{display:grid;gap:4px;justify-items:end}.rf textarea{width:100%;min-height:80px;border:1px solid var(--bd);border-radius:12px;padding:10px;font:inherit;background:var(--cd);color:var(--tx);margin:10px 0 6px}.rf .sm{width:100%}
+</style></head>
+<body><div id="app"><main id="m"></main><nav id="n"></nav></div><div id="lb"></div>
+<input type="file" id="cam" accept="image/*" capture="environment" class="vh">
+<input type="file" id="gal" accept="image/*" class="vh">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script>
+const DEMO=[['Remigijus Viršila','remigijus.virsila','Darbdavys'],['Jonas Petraitis','jonas.petraitis','Darbuotojas'],['Rūta Kazlauskaitė','ruta.kazlauskaite','Darbuotojas'],['Mantas Petrauskas','mantas.petrauskas','Darbuotojas']];
+let EMP=[];const $=s=>document.querySelector(s);
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const lsGet=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
+const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return 1}catch{return 0}};
+const L=()=>lsGet('atv_ci',[]);
+let me=null,tab='home',DB=null,UID=null,flt={d:'',e:''},cache=[],seq=0;
+const st={busy:0,err:'',msg:'',lb:''};
+const p2=n=>String(n).padStart(2,'0');
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate())};
+const hm=()=>{const d=new Date();return p2(d.getHours())+':'+p2(d.getMinutes())};
+const MON=['sausio','vasario','kovo','balandžio','gegužės','birželio','liepos','rugpjūčio','rugsėjo','spalio','lapkričio','gruodžio'];
+const fd=s=>{const a=String(s).split('-');return a.length==3&&MON[a[1]-1]?`${a[0]} m. ${MON[a[1]-1]} ${+a[2]} d.`:esc(s)};
+const ph=p=>/^(data:image\/jpeg;base64,[A-Za-z0-9+\/=]+|https:\/\/[^\s"'<>]+)$/.test(p||'')?p:'';
+const desc=(a,b)=>(b.date+b.time).localeCompare(a.date+a.time);
+const START='08:00',mins=t=>{const a=String(t||'').split(':');return a.length==2?a[0]*60+ +a[1]:NaN};
+const lateBy=x=>{const m=mins(x.time)-mins(START);return m>0?m:0};
+const worked=x=>{const m=mins(x.out)-mins(x.time);return m>0?Math.floor(m/60)+' val. '+m%60+' min.':''};
+const dec=d=>d?{ok:!!d.ok,no:!!d.no,c:String(d.c||'')}:{};
+const shrink=f=>new Promise((res,rej)=>{const r=new FileReader();r.onerror=rej;r.onload=()=>{const i=new Image();i.onerror=rej;i.onload=()=>{const k=Math.min(1,380/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);c.getContext('2d').drawImage(i,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.55))};i.src=r.result};r.readAsDataURL(f)});
+
+/* Duomenų sluoksnis: Supabase */
+const hmOf=t=>t?new Date(t).toLocaleTimeString('lt-LT',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Europe/Vilnius'}):'';
+const mapRows=async rows=>{
+ const u=rows.length?(await sb.storage.from('photos').createSignedUrls(rows.map(r=>r.photo_path),3600)).data||[]:[];
+ return rows.map((r,i)=>({id:r.id,empId:r.user_id,name:(r.profiles&&r.profiles.full_name)||me.name,date:r.day,time:hmOf(r.arrived_at),out:hmOf(r.left_at),photo:(u[i]&&u[i].signedUrl)||'',ok:r.status=='confirmed',no:r.status=='rejected',c:r.comment||''}))};
+const B={
+ async mine(){const {data,error}=await sb.from('checkins').select('*').eq('user_id',me.id).order('day',{ascending:false});if(error)throw error;return mapRows(data)},
+ async all(){const {data,error}=await sb.from('checkins').select('*,profiles(full_name)').order('day',{ascending:false}).limit(200);if(error)throw error;return mapRows(data)},
+ async add(c){
+  const path=me.id+'/'+c.date+'-'+Date.now()+'.jpg',blob=await (await fetch(c.photo)).blob();
+  let r=await sb.storage.from('photos').upload(path,blob,{contentType:'image/jpeg'});if(r.error)throw r.error;
+  r=await sb.from('checkins').insert({user_id:me.id,photo_path:path});if(r.error)throw r.error},
+ async decide(id,o){const r=await sb.rpc('decide_checkin',{p_id:id,p_status:o.ok?'confirmed':'rejected',p_comment:o.c||null});if(r.error)throw r.error},
+ async leave(){const r=await sb.rpc('leave_work');if(r.error)throw r.error}
+};
+
+const thumb=(x,i)=>ph(x.photo)?`<img class=th src="${ph(x.photo)}" alt="" data-a=img data-i=${i}>`:'<div class=th></div>';
+const lateB=x=>lateBy(x)?`<span class="bdg w">Pavėlavo ${lateBy(x)} min.</span>`:'';
+const inf=x=>`<div class=mu>Atvyko ${esc(x.time)}${x.out?', išvyko '+esc(x.out):''}</div>${worked(x)?`<div class=mu>Dirbta ${worked(x)}</div>`:''}`;
+const stat=x=>x.ok?'<span class=bdg>✓ Patvirtinta</span>':x.no?'<span class="bdg r">Atmesta</span>':'<span class="bdg w">Laukiama</span>';
+const conf=x=>(x.ok||x.no?stat(x):'')+(x.no&&x.c?`<div class=rc>${esc(x.c)}</div>`:'')+(x.ok?'':`<div class=acts><button class=sm data-a=ok data-id="${esc(x.id)}">Patvirtinti</button>${x.no?'':`<button class="sm rj" data-a=rj data-id="${esc(x.id)}">Atmesti</button>`}</div>`)+(st.rej==x.id?`<div class=rf><textarea id=rcm maxlength=200 placeholder="Atmetimo priežastis (komentaras)"></textarea><button class="sm rj" data-a=rjgo data-id="${esc(x.id)}">Atmesti atvykimą</button><button class=lnk data-a=rjno>Atšaukti</button></div>`:'');
+const V={};
+V.login=()=>`<div class=lg><div class=logo>✓</div><h1>Atvykau</h1><p class=mu>Darbuotojų atvykimo registravimas</p>
+<form id=f><label>Prisijungimo vardas<input id=em type=text autocomplete=off autocapitalize=none autocorrect=off spellcheck=false placeholder="vardas.pavarde" required></label>
+<label>Slaptažodis<input id=pw type=password autocomplete=new-password required></label>
+${st.err?`<div class=er style="margin-top:12px">${esc(st.err)}</div>`:''}<button class=btn>Prisijungti</button></form>
+<div class=card><b>Demo paskyros</b><div class=mu>Visų slaptažodis: Demo1234</div>${DEMO.map(a=>`<button class=btn2 data-a=demo data-e=${a[1]} style="width:100%;text-align:left;padding:6px 16px"><b>${esc(a[0])}</b><br><small>${a[2]}, ${a[1]}</small></button>`).join('')}
+</div></div>`;
+V.home=async()=>{
+ if(me.role=='employer'){
+  const all=await B.all(),td=all.filter(x=>x.date==today()).sort(desc),miss=EMP.filter(e=>!td.some(x=>x.empId==e.id));cache=td;
+  return `<h2>Šiandienos atvykimai</h2><p class=mu>${fd(today())}. Atvyko ${td.length} iš ${EMP.length}, pavėlavo ${td.filter(x=>lateBy(x)>0).length}.</p>`+
+  (td.length?td.map((x,i)=>`<div class=card><div class=row>${thumb(x,i)}<div class=g><b>${esc(x.name)}</b>${inf(x)}</div>${lateB(x)}</div>${conf(x)}</div>`).join(''):'<div class="card mu">Šiandien dar niekas neatvyko.</div>')+
+  '<h3>Dar neatvyko</h3>'+(miss.length?`<div class=chips>${miss.map(e=>`<span class=chip>${esc(e.name)}</span>`).join('')}</div>`:'<div class=card>Visi darbuotojai jau atvyko 🎉</div>');
+ }
+ const t=(await B.mine()).find(x=>x.date==today());
+ return `<h2>Labas, ${esc(me.name.split(' ')[0])}!</h2><p class=mu>${fd(today())}</p>`+(t?
+  `<div class=card><b>✓ Šiandien jau atvykote ${esc(t.time)}</b>${lateBy(t)?`<div class=mu>Pavėlavote ${lateBy(t)} min. Darbo pradžia ${START}.</div>`:''}${t.out?`<div class=mu>Išvykote ${esc(t.out)}${worked(t)?'. Dirbta '+worked(t):''}</div>`:''}${t.no?`<div class=rc>Atvykimas atmestas${t.c?': '+esc(t.c):''}</div>`:''}${ph(t.photo)?`<img class=pic src="${ph(t.photo)}" alt="Jūsų nuotrauka">`:''}</div>${t.out?'':`<button class=btn data-a=leave>Išvykau</button>`}`:
+  `<div class=cen><label class="big${st.busy?' off':''}" for=cam><span>${st.busy?'Siunčiama…':'<i>📷</i>Atvykau į darbą'}</span></label><p class=mu>Darbo pradžia ${START}. Paspaudus atsidarys kamera. Nufotografuokite save darbo vietoje.</p><label class=lnk for=gal>Kamera neatsidaro? Pasirinkite nuotrauką</label></div>`);
+};
+V.hist=async()=>{
+ if(me.role=='employer'){
+  const r=(await B.all()).filter(x=>(!flt.d||x.date==flt.d)&&(!flt.e||x.empId==flt.e)).sort(desc);cache=r;
+  return `<h2>Nuotraukų galerija</h2><div class=flt><input type=date id=fd value="${esc(flt.d)}" aria-label="Data"><select id=fe aria-label="Darbuotojas"><option value="">Visi darbuotojai</option>${EMP.map(e=>`<option value=${e.id} ${flt.e==e.id?'selected':''}>${esc(e.name)}</option>`).join('')}</select></div>`+
+  (flt.d||flt.e?'<button class=lnk data-a=clr>Išvalyti filtrus</button>':'')+
+  (r.length?`<div class=grid>${r.map((x,i)=>`<div class="card gc">${ph(x.photo)?`<img src="${ph(x.photo)}" alt="" data-a=img data-i=${i}>`:''}<b>${esc(x.name)}</b><div class=mu>${fd(x.date)}, ${esc(x.time)}${x.out?' – '+esc(x.out):''}</div>${lateB(x)}${worked(x)?`<div class=mu>Dirbta ${worked(x)}</div>`:''}${conf(x)}</div>`).join('')}</div>`:'<div class="card mu">Pagal pasirinktus filtrus įrašų nėra.</div>');
+ }
+ const r=(await B.mine()).sort(desc);cache=r;
+ return '<h2>Mano istorija</h2>'+(r.length?r.map((x,i)=>`<div class=card><div class=row>${thumb(x,i)}<div class=g><b>${fd(x.date)}</b>${inf(x)}</div><div class=sd>${lateB(x)}${stat(x)}</div></div>${x.no&&x.c?`<div class=rc>${esc(x.c)}</div>`:''}</div>`).join(''):'<div class="card mu">Dar neturite atvykimų. Pažymėkite pirmą skiltyje Pradžia.</div>');
+};
+V.about=()=>`<h2>Apie Atvykau</h2><div class=card>Atvykau yra paprasta programėlė darbuotojų atvykimui registruoti. Darbuotojas vienu paspaudimu pažymi, kad atvyko į darbą, ir nufotografuoja save kaip įrodymą. Darbdavys mato visų šios dienos atvykimus, nuotraukas ir juos patvirtina.</div>
+<div class=vid><div><b>▶</b>Aiškinamasis vaizdo įrašas bus čia</div></div>
+<h3>Sekite mus</h3><div class=soc><a href="https://www.facebook.com" target=_blank rel=noopener>Facebook</a><a href="https://www.instagram.com" target=_blank rel=noopener>Instagram</a><a href="https://www.linkedin.com" target=_blank rel=noopener>LinkedIn</a></div>`;
+V.prof=()=>`<h2>Profilis</h2><div class=card><b>${esc(me.name)}</b><div class=mu>Prisijungimo vardas: ${esc(me.user)}</div><p><span class=bdg>${me.role=='employer'?'Darbdavys':'Darbuotojas'}</span></p></div>
+<div class="card mu">🔒 Darbuotojai mato tik savo duomenis. Visų atvykimus ir nuotraukas mato tik darbdavys.</div>
+<button class=btn data-a=out>Atsijungti</button>`;
+
+async function render(){
+ const n=++seq,m=$('#m'),nav=$('#n');
+ if(!me){nav.innerHTML='';m.innerHTML=V.login();$('#lb').innerHTML='';return}
+ nav.innerHTML=[['home','🏠','Pradžia'],['hist','🕘','Istorija'],['about','ℹ️','Apie'],['prof','👤','Profilis']].map(([k,i,l])=>`<button data-a=tab data-t=${k} class="${tab==k?'on':''}"><span>${i}</span>${l}</button>`).join('');
+ let h;try{h=await V[tab]()}catch{h='<div class=er>Nepavyko įkelti duomenų. Bandykite dar kartą.</div>'}
+ if(n!=seq)return;
+ m.innerHTML=`<div class=who>👤 ${esc(me.name)}, ${me.role=='employer'?'darbdavys':'darbuotojas'}</div>`+(st.msg?`<div class=ok>${esc(st.msg)}</div>`:'')+(st.err?`<div class=er>${esc(st.err)}</div>`:'')+h;
+ $('#lb').innerHTML=st.lb?`<div class=lbx data-a=lbx><img src="${st.lb}" alt="Nuotrauka"></div>`:'';
+}
+const norm=s=>String(s).normalize('NFD').replace(/\p{M}/gu,'').toLowerCase().trim().replace(/\s+/g,'.');
+async function login(u,pw){
+ if(/JUSU/.test(SUPABASE_URL)){st.err='Neužpildytas config.js failas.';return render()}
+ const {data,error}=await sb.auth.signInWithPassword({email:norm(u)+'@atvykau.lt',password:pw});
+ if(error){st.err='Neteisingas prisijungimo vardas arba slaptažodis.';return render()}
+ await start(data.user);
+}
+async function start(u){
+ const {data:p}=await sb.from('profiles').select('*').eq('id',u.id).maybeSingle();
+ if(!p){await sb.auth.signOut();st.err='Šiai paskyrai nėra profilio. Paleiskite schema.sql dar kartą.';return render()}
+ me={id:u.id,user:p.username,name:p.full_name,role:p.role};
+ if(me.role=='employer'){const {data:e}=await sb.from('profiles').select('id,full_name').eq('role','employee').order('full_name');EMP=(e||[]).map(x=>({id:x.id,name:x.full_name}))}
+ tab='home';st.err=st.msg='';render();
+}
+async function doCheckin(f){
+ st.busy=1;st.err=st.msg='';render();
+ try{
+  const date=today(),id=me.id+'_'+date;
+  if((await B.mine()).some(x=>x.date==date))st.err='Šiandien jau pažymėjote atvykimą.';
+  else{const photo=await shrink(f);const c={id,empId:me.id,name:me.name,date,time:hm(),photo};await B.add(c);st.msg='Atvykimas sėkmingai užfiksuotas!'+(lateBy(c)?' Pavėlavote '+lateBy(c)+' min.':'')}
+ }catch(e){st.err='Nepavyko išsaugoti ('+((e&&(e.code||e.message))||'klaida')+'). Bandykite dar kartą.'}
+ st.busy=0;render();
+}
+document.addEventListener('click',async e=>{
+ const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a;
+ if(a=='tab'){tab=t.dataset.t;st.msg=st.err='';render()}
+ else if(a=='cam')$('#cam').click();
+ else if(a=='img'){st.lb=ph((cache[+t.dataset.i]||{}).photo);render()}
+ else if(a=='lbx'){st.lb='';render()}
+ else if(a=='ok'){t.disabled=true;try{await B.decide(t.dataset.id,{ok:1});st.err=''}catch{st.err='Nepavyko patvirtinti.'}render()}
+ else if(a=='leave'){t.disabled=true;try{await B.leave(me.id+'_'+today(),hm());st.err='';st.msg='Išvykimas užfiksuotas. Gražios dienos!'}catch{st.err='Nepavyko užfiksuoti išvykimo.'}render()}
+ else if(a=='rj'){st.err=st.msg='';st.rej=t.dataset.id;render()}
+ else if(a=='rjno'){st.rej='';render()}
+ else if(a=='rjgo'){const c=($('#rcm').value||'').trim();if(!c){st.err='Įrašykite atmetimo komentarą.';return render()}try{await B.decide(t.dataset.id,{no:1,c});st.rej='';st.err=''}catch{st.err='Nepavyko atmesti.'}render()}
+ else if(a=='demo')login(t.dataset.e,'Demo1234');
+ else if(a=='out'){await sb.auth.signOut();me=null;EMP=[];tab='home';st.err=st.msg='';render()}
+ else if(a=='clr'){flt={d:'',e:''};render()}
+});
+document.addEventListener('submit',e=>{if(e.target.id=='f'){e.preventDefault();login($('#em').value.trim().toLowerCase(),$('#pw').value)}});
+document.addEventListener('change',e=>{if(e.target.id=='fd'){flt.d=e.target.value;render()}else if(e.target.id=='fe'){flt.e=e.target.value;render()}});
+['cam','gal'].forEach(i=>$('#'+i).addEventListener('change',e=>{const f=e.target.files[0];e.target.value='';if(f&&!st.busy)doCheckin(f)}));
+
+me=null;render();
+(async()=>{try{const {data}=await sb.auth.getSession();if(data.session)await start(data.session.user)}catch{}})();
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
+</script></body></html>
