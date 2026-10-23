@@ -47,6 +47,7 @@ input,select{width:100%;min-height:50px;border:1px solid var(--bd);border-radius
 .lbx{position:fixed;inset:0;background:rgba(0,0,0,.88);display:grid;place-items:center;padding:16px;z-index:9}.lbx img{max-width:100%;max-height:100%;border-radius:12px}
 .vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}.who{font-size:13px;color:var(--mu);margin-bottom:8px}label.big{display:grid;place-items:center;text-align:center;cursor:pointer;margin:0 auto}label.big.off{pointer-events:none;opacity:.6}label.lnk{display:inline-block;margin-top:14px;cursor:pointer}
 .bdg.r{background:var(--erb);color:var(--ert)}.rj{background:var(--erb);color:var(--ert)}.rc{margin-top:8px;padding:8px 10px;border-radius:10px;background:var(--erb);color:var(--ert);font-size:14px}.acts{display:flex;gap:8px;margin-top:10px}.acts .sm{flex:1}.gc .acts{flex-direction:column;gap:0}.sd{display:grid;gap:4px;justify-items:end}.rf textarea{width:100%;min-height:80px;border:1px solid var(--bd);border-radius:12px;padding:10px;font:inherit;background:var(--cd);color:var(--tx);margin:10px 0 6px}.rf .sm{width:100%}
+.vv{display:block;width:100%;aspect-ratio:16/9;border-radius:16px;background:#000;margin:12px 0}
 </style></head>
 <body><div id="app"><main id="m"></main><nav id="n"></nav></div><div id="lb"></div>
 <input type="file" id="cam" accept="image/*" capture="environment" class="vh">
@@ -54,7 +55,6 @@ input,select{width:100%;min-height:50px;border:1px solid var(--bd);border-radius
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="config.js"></script>
 <script>
-const DEMO=[['Remigijus Viršila','remigijus.virsila','Darbdavys'],['Jonas Petraitis','jonas.petraitis','Darbuotojas'],['Rūta Kazlauskaitė','ruta.kazlauskaite','Darbuotojas'],['Mantas Petrauskas','mantas.petrauskas','Darbuotojas']];
 let EMP=[];const $=s=>document.querySelector(s);
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
@@ -103,8 +103,7 @@ V.login=()=>`<div class=lg><div class=logo>✓</div><h1>Atvykau</h1><p class=mu>
 <form id=f><label>Prisijungimo vardas<input id=em type=text autocomplete=off autocapitalize=none autocorrect=off spellcheck=false placeholder="vardas.pavarde" required></label>
 <label>Slaptažodis<input id=pw type=password autocomplete=new-password required></label>
 ${st.err?`<div class=er style="margin-top:12px">${esc(st.err)}</div>`:''}<button class=btn>Prisijungti</button></form>
-<div class=card><b>Demo paskyros</b><div class=mu>Visų slaptažodis: Demo1234</div>${DEMO.map(a=>`<button class=btn2 data-a=demo data-e=${a[1]} style="width:100%;text-align:left;padding:6px 16px"><b>${esc(a[0])}</b><br><small>${a[2]}, ${a[1]}</small></button>`).join('')}
-</div></div>`;
+</div>`;
 V.home=async()=>{
  if(me.role=='employer'){
   const all=await B.all(),td=all.filter(x=>x.date==today()).sort(desc),miss=EMP.filter(e=>!td.some(x=>x.empId==e.id));cache=td;
@@ -128,7 +127,7 @@ V.hist=async()=>{
  return '<h2>Mano istorija</h2>'+(r.length?r.map((x,i)=>`<div class=card><div class=row>${thumb(x,i)}<div class=g><b>${fd(x.date)}</b>${inf(x)}</div><div class=sd>${lateB(x)}${stat(x)}</div></div>${x.no&&x.c?`<div class=rc>${esc(x.c)}</div>`:''}</div>`).join(''):'<div class="card mu">Dar neturite atvykimų. Pažymėkite pirmą skiltyje Pradžia.</div>');
 };
 V.about=()=>`<h2>Apie Atvykau</h2><div class=card>Atvykau yra paprasta programėlė darbuotojų atvykimui registruoti. Darbuotojas vienu paspaudimu pažymi, kad atvyko į darbą, ir nufotografuoja save kaip įrodymą. Darbdavys mato visų šios dienos atvykimus, nuotraukas ir juos patvirtina.</div>
-<div class=vid><div><b>▶</b>Aiškinamasis vaizdo įrašas bus čia</div></div>
+<video class=vv controls playsinline preload=metadata poster="atvykau-poster.jpg" src="atvykau.mp4"></video>
 <h3>Sekite mus</h3><div class=soc><a href="https://www.facebook.com" target=_blank rel=noopener>Facebook</a><a href="https://www.instagram.com" target=_blank rel=noopener>Instagram</a><a href="https://www.linkedin.com" target=_blank rel=noopener>LinkedIn</a></div>`;
 V.prof=()=>`<h2>Profilis</h2><div class=card><b>${esc(me.name)}</b><div class=mu>Prisijungimo vardas: ${esc(me.user)}</div><p><span class=bdg>${me.role=='employer'?'Darbdavys':'Darbuotojas'}</span></p></div>
 <div class="card mu">🔒 Darbuotojai mato tik savo duomenis. Visų atvykimus ir nuotraukas mato tik darbdavys.</div>
@@ -177,7 +176,6 @@ document.addEventListener('click',async e=>{
  else if(a=='rj'){st.err=st.msg='';st.rej=t.dataset.id;render()}
  else if(a=='rjno'){st.rej='';render()}
  else if(a=='rjgo'){const c=($('#rcm').value||'').trim();if(!c){st.err='Įrašykite atmetimo komentarą.';return render()}try{await B.decide(t.dataset.id,{no:1,c});st.rej='';st.err=''}catch{st.err='Nepavyko atmesti.'}render()}
- else if(a=='demo')login(t.dataset.e,'Demo1234');
  else if(a=='out'){await sb.auth.signOut();me=null;EMP=[];tab='home';st.err=st.msg='';render()}
  else if(a=='clr'){flt={d:'',e:''};render()}
 });
