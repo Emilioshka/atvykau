@@ -53,12 +53,22 @@ input,select{width:100%;min-height:50px;border:1px solid var(--bd);border-radius
 .pics{display:flex;gap:4px;margin-top:10px}.pics:empty{display:none}.pics img,.gc .pics img{width:calc(50% - 2px);flex:none;aspect-ratio:1;object-fit:cover;border-radius:10px;background:var(--bd);cursor:pointer}
 .set{display:flex;gap:8px;align-items:center;margin-top:8px}.set input{flex:1;margin:0;min-width:0}.set .sm{flex:none}
 label.big.sm2{width:min(46vw,170px);height:min(46vw,170px);font-size:19px;background:var(--tx);color:var(--bg);box-shadow:none}.sm2 i{font-size:38px}
+.tr{display:flex;gap:6px;align-items:center}.gear{border:1px solid var(--bd);background:var(--cd);border-radius:10px;min-height:36px;min-width:40px;font-size:16px}
+.dayrow{display:flex;align-items:center;gap:8px;margin:8px 0}.dayrow b{flex:1}.dayrow select{width:auto;flex:none;min-width:110px;margin:0}.dayrow input{width:110px;margin:0}
+.chk{display:flex;gap:10px;align-items:center;margin:10px 0;font-weight:500}.chk input{width:22px;min-height:22px;margin:0}
+.btn2.sel{background:var(--pr);color:#fff}.ghost2{background:var(--bd)!important;color:var(--tx)!important}
+.acts{flex-wrap:wrap}.acts .ghost{flex:1 1 100%;background:var(--bd);color:var(--tx)}
+.chip.ov{background:var(--erb);color:var(--ert)}.wn{color:var(--wt)}
+.pics img,.gc .pics img{width:calc(33.33% - 3px)}
+a{color:var(--pr)}
 </style></head>
 <body><div id="app"><main id="m"></main><nav id="n"></nav></div><div id="lb"></div>
 <input type="file" id="cam" accept="image/*" capture="environment" class="vh">
 <input type="file" id="gal" accept="image/*" class="vh">
 <input type="file" id="camo" accept="image/*" capture="environment" class="vh">
 <input type="file" id="galo" accept="image/*" class="vh">
+<input type="file" id="camr" accept="image/*" capture="environment" class="vh">
+<input type="file" id="galr" accept="image/*" class="vh">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="config.js"></script>
 <script>
@@ -89,13 +99,32 @@ confirm:'Confirm',reject:'Reject',rejPh:'Reason for rejection (comment)',rejGo:'
 galT:'Photo gallery',allEmp:'All employees',clear:'Clear filters',noMatch:'No records match the selected filters.',dateL:'Date',empL:'Employee',pArr:'Arrival photo',pOut:'Departure photo',
 aboutT:'About Atvykau',aboutP:"Atvykau is a simple app for recording when employees arrive at work. An employee taps one button and takes a photo as proof of arrival, and again when leaving. The employer sees everyone's check-ins and photos, sets the start time, and confirms or rejects each record.",follow:'Follow us',
 profT:'Profile',loginName:'Username',privacy:"🔒 Employees can only see their own data. Only the employer can see everyone's check-ins and photos.",logout:'Log out'}};
+Object.assign(I.lt,{setT:'Nustatymai',theme:'Išvaizda',thAuto:'Automatinė',thLight:'Šviesi',thDark:'Tamsi',back:'← Atgal',
+defStart:'Numatytoji darbo pradžia',defHelp:'Taikoma darbuotojams be individualaus grafiko (Pr–Pn).',strictT:'Griežtas GPS režimas',strictH:'Neleisti pažymėti atvykimo už objekto ribų.',on:'Įjungta',off:'Išjungta',
+sitesT:'Objektai (GPS)',addSite:'+ Pridėti objektą',siteName:'Objekto pavadinimas',coords:'Koordinatės (platuma, ilguma)',radius:'Spindulys (m)',useLoc:'📍 Naudoti mano dabartinę vietą',delT:'Ištrinti',noSites:'Objektų dar nėra.',locFail:'Nepavyko nustatyti vietos. Leiskite vietos prieigą.',badCoords:'Įrašykite pavadinimą ir teisingas koordinates, pvz. 54.6872, 25.2797',siteSaved:'Objektas išsaugotas.',
+schedT:'Darbuotojų grafikai',defSched:'Numatytasis ({0})',flexSched:'Laisvas grafikas',sumWk:'Pr–Pn {0}',sumVar:'Skirtinga pagal dienas',schedSaved:'Grafikas išsaugotas.',quickT:'Greitas nustatymas',applyWk:'Taikyti Pr–Pn',flexAll:'Laisvas grafikas (bet kada)',mTime:'Atvyksta',mAny:'Bet kada',mOff:'Nedirba',sitesFor:'Objektai, kuriuose dirba',myPlan:'Mano grafikas',
+planTime:'Šiandien darbo pradžia {0}.',planAny:'Šiandien atvykimo laikas nesvarbus.',planOff:'Šiandien nedarbo diena.',siteLabel:'Objektas: {0}.',
+inZone:'📍 Objekte ({0} m)',outZone:'⚠ Ne objekte ({0} m)',gpsOnly:'📍 Vieta užfiksuota',noGps:'GPS nėra',map:'Žemėlapis',errOut:'Esate už objekto ribų. Atvykimas neužfiksuotas.',errGps:'Reikalingas GPS. Leiskite vietos prieigą ir bandykite dar kartą.',
+flex:'Laisvas grafikas',dayOff:'Nedarbo diena',overdue:'vėluoja {0} min.',
+retakeBtn:'Prašyti naujos nuotraukos',retakeTitle:'Darbdavys prašo nusifotografuoti dar kartą',retakeBtn2:'Nufotografuoti iš naujo',retaking:'Laukiama naujos nuotraukos',retakeDone:'Nauja nuotrauka išsiųsta.',retakeFail:'Nepavyko išsiųsti nuotraukos',rtFail:'Nepavyko paprašyti nuotraukos.',retakeNeed:'Reikia naujos nuotraukos',
+csv:'Eksportuoti CSV',cArr:'Atvykimas',cOut:'Išvykimas',cMin:'Dirbta (min.)',cDelta:'Skirtumas nuo grafiko (min.)',cSite:'Objektas',cDist:'Atstumas (m)',cStatus:'Būsena',cComment:'Komentaras'});
+Object.assign(I.en,{setT:'Settings',theme:'Appearance',thAuto:'Automatic',thLight:'Light',thDark:'Dark',back:'← Back',
+defStart:'Default start time',defHelp:'Used for employees without an individual schedule (Mon–Fri).',strictT:'Strict GPS mode',strictH:'Do not allow check-in outside the site zone.',on:'On',off:'Off',
+sitesT:'Sites (GPS)',addSite:'+ Add site',siteName:'Site name',coords:'Coordinates (latitude, longitude)',radius:'Radius (m)',useLoc:'📍 Use my current location',delT:'Delete',noSites:'No sites yet.',locFail:'Could not get your location. Please allow location access.',badCoords:'Enter a name and valid coordinates, e.g. 54.6872, 25.2797',siteSaved:'Site saved.',
+schedT:'Employee schedules',defSched:'Default ({0})',flexSched:'Flexible schedule',sumWk:'Mon–Fri {0}',sumVar:'Varies by day',schedSaved:'Schedule saved.',quickT:'Quick setup',applyWk:'Apply Mon–Fri',flexAll:'Flexible (any time)',mTime:'Arrives',mAny:'Any time',mOff:'Day off',sitesFor:'Sites where they work',myPlan:'My schedule',
+planTime:'Today work starts at {0}.',planAny:'Today your arrival time is flexible.',planOff:'Today is your day off.',siteLabel:'Site: {0}.',
+inZone:'📍 On site ({0} m)',outZone:'⚠ Off site ({0} m)',gpsOnly:'📍 Location recorded',noGps:'No GPS',map:'Map',errOut:'You are outside the site zone. Check-in not recorded.',errGps:'Location is required. Allow location access and try again.',
+flex:'Flexible schedule',dayOff:'Day off',overdue:'{0} min late',
+retakeBtn:'Request a new photo',retakeTitle:'Your employer asks you to take another photo',retakeBtn2:'Retake photo',retaking:'New photo requested',retakeDone:'New photo sent.',retakeFail:'Could not send the photo',rtFail:'Could not request the photo.',retakeNeed:'New photo needed',
+csv:'Export CSV',cArr:'Arrival',cOut:'Departure',cMin:'Worked (min)',cDelta:'Difference from schedule (min)',cSite:'Site',cDist:'Distance (m)',cStatus:'Status',cComment:'Comment'});
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const lsGet=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
 const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 let me=null,tab='home',flt={d:'',e:''},cache=[],seq=0,EMP=[],WS='08:00',lang=lsGet('atv_lang','lt')=='en'?'en':'lt';
-const st={busy:0,err:'',msg:'',lb:'',rej:''};
+let SITES=[],SCH={},ES={},STRICT=false,theme=lsGet('atv_theme','auto'),ED=null,SE=null;
+const st={busy:0,err:'',msg:'',lb:'',rej:'',sub:''};
 const t=(k,...a)=>String(I[lang][k]??I.lt[k]??k).replace(/\{(\d)\}/g,(_,i)=>a[i]);
 const norm=s=>String(s).normalize('NFD').replace(/\p{M}/gu,'').toLowerCase().trim().replace(/\s+/g,'.');
 const p2=n=>String(n).padStart(2,'0');
@@ -103,7 +132,15 @@ const today=()=>{const d=new Date();return d.getFullYear()+'-'+p2(d.getMonth()+1
 const fd=s=>{const d=new Date(s+'T12:00:00');return isNaN(d)?esc(s):new Intl.DateTimeFormat(lang=='lt'?'lt-LT':'en-GB',{day:'numeric',month:'long',year:'numeric'}).format(d)};
 const hmOf=x=>x?new Date(x).toLocaleTimeString('lt-LT',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Europe/Vilnius'}):'';
 const mins=s=>{const a=String(s||'').split(':');return a.length>=2?a[0]*60+ +a[1]:NaN};
-const diff=x=>mins(x.time)-mins(x.ws||WS);
+const wdOf=ds=>{const d=new Date(ds+'T12:00:00').getDay();return d==0?7:d};
+const planW=(uid,w)=>{const rows=SCH[uid];if(rows&&rows.length){const r=rows.find(x=>x.weekday==w);return r?{m:r.mode,s:r.start_time?String(r.start_time).slice(0,5):''}:{m:'off',s:''}}return w<=5?{m:'time',s:WS}:{m:'off',s:''}};
+const plan=(uid,ds)=>planW(uid,wdOf(ds));
+const sum=uid=>{if(!(SCH[uid]||[]).length)return t('defSched',WS);const p=[1,2,3,4,5,6,7].map(w=>planW(uid,w));if(p.every(x=>x.m=='any'))return t('flexSched');const wk=p.slice(0,5);if(wk.every(x=>x.m=='time'&&x.s==wk[0].s)&&p[5].m=='off'&&p[6].m=='off')return t('sumWk',wk[0].s);return t('sumVar')};
+const wdn=w=>{const s=new Intl.DateTimeFormat(lang=='lt'?'lt-LT':'en-GB',{weekday:'long'}).format(new Date(2024,0,w));return s.charAt(0).toUpperCase()+s.slice(1)};
+const getPos=()=>new Promise(r=>{if(!navigator.geolocation)return r(null);navigator.geolocation.getCurrentPosition(p=>r({lat:p.coords.latitude,lng:p.coords.longitude,acc:Math.round(p.coords.accuracy)}),()=>r(null),{enableHighAccuracy:true,timeout:12000,maximumAge:0})});
+const applyTheme=()=>{const r=document.documentElement;theme=='light'||theme=='dark'?r.setAttribute('data-theme',theme):r.removeAttribute('data-theme')};
+const em=(e,k)=>{const m=String(e&&e.message||'');return m.includes('GPS reikalingas')?t('errGps'):m.includes('Už objekto')?t('errOut'):t(k)+' ('+((e&&(e.code||e.message))||'?')+')'};
+const loc=x=>x.lat==null?`<div class=mu>${t('noGps')}</div>`:`<div class="mu${x.inz===false?' wn':''}">${x.inz===true?t('inZone',+x.dist):x.inz===false?t('outZone',+x.dist):t('gpsOnly')}${x.site?', '+esc(x.site):''} <a href="https://www.google.com/maps?q=${+x.lat},${+x.lng}" target=_blank rel=noopener>${t('map')}</a></div>`;
 const dur=x=>{const m=mins(x.out)-mins(x.time);return m>0?t('hm',Math.floor(m/60),m%60):''};
 const ph=p=>/^https:\/\/[^\s"'<>]+$/.test(p||'')?p:'';
 const desc=(a,b)=>(b.date+b.time).localeCompare(a.date+a.time);
@@ -111,22 +148,24 @@ const shrink=f=>new Promise((res,rej)=>{const r=new FileReader();r.onerror=rej;r
 const up=async(f,tag)=>{const path=me.id+'/'+tag+today()+'-'+Date.now()+'.jpg',blob=await (await fetch(await shrink(f))).blob();const r=await sb.storage.from('photos').upload(path,blob,{contentType:'image/jpeg'});if(r.error)throw r.error;return path};
 
 const mapRows=async rows=>{
- const paths=rows.flatMap(r=>[r.photo_path,r.left_photo_path]).filter(Boolean),u={};
+ const paths=rows.flatMap(r=>[r.photo_path,r.left_photo_path,r.prev_photo_path]).filter(Boolean),u={};
  if(paths.length)((await sb.storage.from('photos').createSignedUrls(paths,3600)).data||[]).forEach(d=>{u[d.path]=d.signedUrl});
- return rows.map(r=>({id:r.id,empId:r.user_id,name:(r.profiles&&r.profiles.full_name)||me.name,date:r.day,time:hmOf(r.arrived_at),out:hmOf(r.left_at),ws:r.work_start?String(r.work_start).slice(0,5):'',photo:u[r.photo_path]||'',lphoto:u[r.left_photo_path]||'',ok:r.status=='confirmed',no:r.status=='rejected',c:r.comment||''}))};
+ return rows.map(r=>({id:r.id,empId:r.user_id,name:(r.profiles&&r.profiles.full_name)||me.name,date:r.day,time:hmOf(r.arrived_at),out:hmOf(r.left_at),smode:r.sched_mode,ss:r.sched_start?String(r.sched_start).slice(0,5):'',dm:r.delta_min,lat:r.lat,lng:r.lng,dist:r.dist_m,inz:r.in_zone,site:(r.sites&&r.sites.name)||'',rt:r.status=='retake',prev:u[r.prev_photo_path]||'',photo:u[r.photo_path]||'',lphoto:u[r.left_photo_path]||'',ok:r.status=='confirmed',no:r.status=='rejected',c:r.comment||''}))};
 const B={
- async mine(){const {data,error}=await sb.from('checkins').select('*').eq('user_id',me.id).order('day',{ascending:false});if(error)throw error;return mapRows(data)},
- async all(){const {data,error}=await sb.from('checkins').select('*,profiles(full_name)').order('day',{ascending:false}).limit(200);if(error)throw error;return mapRows(data)},
- async add(path){const r=await sb.from('checkins').insert({user_id:me.id,photo_path:path});if(r.error)throw r.error},
+ async mine(){const {data,error}=await sb.from('checkins').select('*,sites(name)').eq('user_id',me.id).order('day',{ascending:false});if(error)throw error;return mapRows(data)},
+ async all(){const {data,error}=await sb.from('checkins').select('*,profiles(full_name),sites(name)').order('day',{ascending:false}).limit(200);if(error)throw error;return mapRows(data)},
+ async add(path,pos){const r=await sb.from('checkins').insert({user_id:me.id,photo_path:path,lat:pos?pos.lat:null,lng:pos?pos.lng:null,acc:pos?pos.acc:null});if(r.error)throw r.error},
  async decide(id,o){const r=await sb.rpc('decide_checkin',{p_id:id,p_status:o.ok?'confirmed':'rejected',p_comment:o.c||null});if(r.error)throw r.error},
- async leave(path){const r=await sb.rpc('leave_work',{p_photo:path});if(r.error)throw r.error}
+ async leave(path,pos){const r=await sb.rpc('leave_work',{p_photo:path,p_lat:pos?pos.lat:null,p_lng:pos?pos.lng:null});if(r.error)throw r.error},
+ async retake(path){const r=await sb.rpc('submit_retake',{p_photo:path});if(r.error)throw r.error},
+ async askRetake(id){const r=await sb.rpc('request_retake',{p_id:id});if(r.error)throw r.error}
 };
 
-const stat=x=>x.ok?`<span class=bdg>${t('confirmed')}</span>`:x.no?`<span class="bdg r">${t('rejected')}</span>`:`<span class="bdg w">${t('pending')}</span>`;
-const timeB=x=>{const d=diff(x);return isNaN(d)?'':d>0?`<span class="bdg w">${t('late',d)}</span>`:`<span class=bdg>${t('onTime')}${d<0?t('early',-d):''}</span>`};
+const stat=x=>x.rt?`<span class="bdg w">${t('retakeNeed')}</span>`:x.ok?`<span class=bdg>${t('confirmed')}</span>`:x.no?`<span class="bdg r">${t('rejected')}</span>`:`<span class="bdg w">${t('pending')}</span>`;
+const timeB=x=>{if(x.smode=='any')return `<span class=bdg>${t('flex')}</span>`;if(x.smode=='off')return `<span class="bdg w">${t('dayOff')}</span>`;const d=x.dm;return d==null?'':d>0?`<span class="bdg w">${t('late',d)}</span>`:`<span class=bdg>${t('onTime')}${d<0?t('early',-d):''}</span>`};
 const inf=x=>`<div class=mu>${t('arr',esc(x.time))}${x.out?t('left',esc(x.out)):''}</div>${dur(x)?`<div class=mu>${t('worked',dur(x))}</div>`:''}`;
-const pics=(x,i)=>`<div class=pics>${ph(x.photo)?`<img src="${ph(x.photo)}" alt="${t('pArr')}" data-a=img data-i=${i} data-k=photo>`:''}${ph(x.lphoto)?`<img src="${ph(x.lphoto)}" alt="${t('pOut')}" data-a=img data-i=${i} data-k=lphoto>`:''}</div>`;
-const conf=x=>(x.ok||x.no?stat(x):'')+(x.no&&x.c?`<div class=rc>${esc(x.c)}</div>`:'')+(x.ok?'':`<div class=acts><button class=sm data-a=ok data-id="${esc(x.id)}">${t('confirm')}</button>${x.no?'':`<button class="sm rj" data-a=rj data-id="${esc(x.id)}">${t('reject')}</button>`}</div>`)+(st.rej==x.id?`<div class=rf><textarea id=rcm maxlength=200 placeholder="${t('rejPh')}"></textarea><button class="sm rj" data-a=rjgo data-id="${esc(x.id)}">${t('rejGo')}</button><button class=lnk data-a=rjno>${t('cancel')}</button></div>`:'');
+const pics=(x,i)=>`<div class=pics>${[['photo','pArr'],['lphoto','pOut'],['prev','pArr']].map(([k,a])=>ph(x[k])?`<img src="${ph(x[k])}" alt="${t(a)}" data-a=img data-i=${i} data-k=${k}>`:'').join('')}</div>`;
+const conf=x=>x.rt?stat(x):(x.ok||x.no?stat(x):'')+(x.no&&x.c?`<div class=rc>${esc(x.c)}</div>`:'')+(x.ok?'':`<div class=acts><button class=sm data-a=ok data-id="${esc(x.id)}">${t('confirm')}</button>${x.no?'':`<button class="sm rj" data-a=rj data-id="${esc(x.id)}">${t('reject')}</button>`}<button class="sm ghost" data-a=rt data-id="${esc(x.id)}">${t('retakeBtn')}</button></div>`)+(st.rej==x.id?`<div class=rf><textarea id=rcm maxlength=200 placeholder="${t('rejPh')}"></textarea><button class="sm rj" data-a=rjgo data-id="${esc(x.id)}">${t('rejGo')}</button><button class=lnk data-a=rjno>${t('cancel')}</button></div>`:'');
 const langB=()=>`<div class=lang><button data-a=lang data-l=lt class="${lang=='lt'?'on':''}">LT</button><button data-a=lang data-l=en class="${lang=='en'?'on':''}">EN</button></div>`;
 
 const V={};
@@ -135,19 +174,21 @@ V.login=()=>`<div class=lg><div class=logo>✓</div><h1>Atvykau</h1><p class=mu>
 <label>${t('pass')}<input id=pw type=password autocomplete=new-password required></label>
 ${st.err?`<div class=er style="margin-top:12px">${esc(st.err)}</div>`:''}<button class=btn>${t('login')}</button></form></div>`;
 const e0=async()=>{
- const x=(await B.mine()).find(r=>r.date==today());
- const hd=`<h2>${t('hello',esc(me.name.split(' ')[0]))}</h2><p class=mu>${fd(today())}</p>`;
- if(!x)return hd+`<div class=cen><label class="big${st.busy?' off':''}" for=cam><span>${st.busy?t('sending'):'<i>📷</i>'+t('btnIn')}</span></label><p class=mu>${t('startAt',WS)} ${t('hint')}</p><label class=lnk for=gal>${t('noCam')}</label></div>`;
- cache=[x];const d=diff(x);
- return hd+`<div class=card><b>${t('arrivedAt',esc(x.time))}</b>${isNaN(d)?'':`<div class=mu>${d>0?t('lateYou',d,x.ws||WS):t('onTimeYou')}</div>`}${x.out?`<div class=mu>${t('leftAt',esc(x.out))}${dur(x)?'. '+t('worked',dur(x)):''}</div>`:''}${x.no?`<div class=rc>${t('rejNote')}${x.c?': '+esc(x.c):''}</div>`:''}${pics(x,0)}</div>`+
+ const rows=await B.mine(),x=rows.find(r=>r.date==today()),rt=rows.find(r=>r.rt);
+ const p=plan(me.id,today()),ms=(ES[me.id]||[]).map(id=>SITES.find(s=>s.id==id)).filter(Boolean).map(s=>s.name);
+ const hd=`<h2>${t('hello',esc(me.name.split(' ')[0]))}</h2><p class=mu>${fd(today())}<br>${p.m=='time'?t('planTime',p.s):p.m=='any'?t('planAny'):t('planOff')}${ms.length?' '+t('siteLabel',esc(ms.join(', '))):''}</p>`;
+ const rtb=rt?`<div class=card><b>${t('retakeTitle')}</b><div class=cen style="margin-top:12px"><label class="big sm2${st.busy?' off':''}" for=camr><span>${st.busy?t('sending'):'<i>📷</i>'+t('retakeBtn2')}</span></label><br><label class=lnk for=galr>${t('noCam')}</label></div></div>`:'';
+ if(!x)return hd+rtb+`<div class=cen><label class="big${st.busy?' off':''}" for=cam><span>${st.busy?t('sending'):'<i>📷</i>'+t('btnIn')}</span></label><p class=mu>${t('hint')}</p><label class=lnk for=gal>${t('noCam')}</label></div>`;
+ cache=[x];const d=x.dm,ln=x.smode=='any'?t('planAny'):x.smode=='off'?t('planOff'):d==null?'':d>0?t('lateYou',d,x.ss):t('onTimeYou');
+ return hd+rtb+`<div class=card><b>${t('arrivedAt',esc(x.time))}</b>${ln?`<div class=mu>${ln}</div>`:''}${x.out?`<div class=mu>${t('leftAt',esc(x.out))}${dur(x)?'. '+t('worked',dur(x)):''}</div>`:''}${x.no?`<div class=rc>${t('rejNote')}${x.c?': '+esc(x.c):''}</div>`:''}${pics(x,0)}</div>`+
  (x.out?'':`<div class=cen><label class="big sm2${st.busy?' off':''}" for=camo><span>${st.busy?t('sending'):'<i>📷</i>'+t('btnOut')}</span></label><p class=mu>${t('outHint')}</p><label class=lnk for=galo>${t('noCam')}</label></div>`);
 };
 const e1=async()=>{
- const all=await B.all(),td=all.filter(x=>x.date==today()).sort(desc),miss=EMP.filter(e=>!td.some(x=>x.empId==e.id));cache=td;
- return `<div class=card><b>${t('wsT')}</b><div class=set><input type=time id=wsv value="${esc(WS)}" aria-label="${t('wsT')}"><button class=sm data-a=ws>${t('save')}</button></div></div>`+
- `<h2>${t('todayT')}</h2><p class=mu>${fd(today())}. ${t('summary',td.length,EMP.length,td.filter(x=>diff(x)>0).length)}</p>`+
- (td.length?td.map((x,i)=>`<div class=card><div class=row><div class=g><b>${esc(x.name)}</b>${inf(x)}</div><div class=sd>${timeB(x)}</div></div>${pics(x,i)}${conf(x)}</div>`).join(''):`<div class="card mu">${t('none')}</div>`)+
- `<h3>${t('notYet')}</h3>`+(miss.length?`<div class=chips>${miss.map(e=>`<span class=chip>${esc(e.name)}</span>`).join('')}</div>`:`<div class=card>${t('allIn')}</div>`);
+ const td=(await B.all()).filter(x=>x.date==today()).sort(desc);cache=td;
+ const exp=EMP.map(e=>({e,p:plan(e.id,today())})).filter(o=>o.p.m!='off'&&!td.some(x=>x.empId==o.e.id)),nm=mins(hmOf(new Date())),planned=EMP.filter(e=>plan(e.id,today()).m!='off').length;
+ return `<h2>${t('todayT')}</h2><p class=mu>${fd(today())}<br>${t('summary',td.length,planned,td.filter(x=>x.dm>0).length)}</p>`+
+ (td.length?td.map((x,i)=>`<div class=card><div class=row><div class=g><b>${esc(x.name)}</b>${inf(x)}</div><div class=sd>${timeB(x)}</div></div>${loc(x)}${pics(x,i)}${conf(x)}</div>`).join(''):`<div class="card mu">${t('none')}</div>`)+
+ `<h3>${t('notYet')}</h3>`+(exp.length?`<div class=chips>${exp.map(o=>{const ov=o.p.m=='time'&&nm>mins(o.p.s)?nm-mins(o.p.s):0;return `<span class="chip${ov?' ov':''}">${esc(o.e.name)}${o.p.m=='time'?' ('+esc(o.p.s)+')':''}${ov?', '+t('overdue',ov):''}</span>`}).join('')}</div>`:`<div class=card>${t('allIn')}</div>`);
 };
 const h0=async()=>{
  const r=(await B.mine()).sort(desc);cache=r;
@@ -156,14 +197,42 @@ const h0=async()=>{
 const h1=async()=>{
  const r=(await B.all()).filter(x=>(!flt.d||x.date==flt.d)&&(!flt.e||x.empId==flt.e)).sort(desc);cache=r;
  return `<h2>${t('galT')}</h2><div class=flt><input type=date id=fd value="${esc(flt.d)}" aria-label="${t('dateL')}"><select id=fe aria-label="${t('empL')}"><option value="">${t('allEmp')}</option>${EMP.map(e=>`<option value=${e.id} ${flt.e==e.id?'selected':''}>${esc(e.name)}</option>`).join('')}</select></div>`+
- (flt.d||flt.e?`<button class=lnk data-a=clr>${t('clear')}</button>`:'')+
- (r.length?`<div class=grid>${r.map((x,i)=>`<div class="card gc">${pics(x,i)}<b>${esc(x.name)}</b><div class=mu>${fd(x.date)}, ${esc(x.time)}${x.out?' – '+esc(x.out):''}</div>${timeB(x)}${dur(x)?`<div class=mu>${t('worked',dur(x))}</div>`:''}${conf(x)}</div>`).join('')}</div>`:`<div class="card mu">${t('noMatch')}</div>`);
+ `<div class=acts><button class=btn2 data-a=csv>${t('csv')}</button>${flt.d||flt.e?`<button class=lnk data-a=clr>${t('clear')}</button>`:''}</div>`+
+ (r.length?`<div class=grid>${r.map((x,i)=>`<div class="card gc">${pics(x,i)}<b>${esc(x.name)}</b><div class=mu>${fd(x.date)}, ${esc(x.time)}${x.out?' – '+esc(x.out):''}</div>${timeB(x)}${loc(x)}${dur(x)?`<div class=mu>${t('worked',dur(x))}</div>`:''}${conf(x)}</div>`).join('')}</div>`:`<div class="card mu">${t('noMatch')}</div>`);
 };
 V.home=()=>me.role=='employer'?e1():e0();
 V.hist=()=>me.role=='employer'?h1():h0();
 V.about=()=>`<h2>${t('aboutT')}</h2><div class=card>${t('aboutP')}</div><video class=vv controls playsinline preload=metadata poster="atvykau-poster.jpg" src="atvykau.mp4"></video><h3>${t('follow')}</h3><div class=soc><a href="https://www.facebook.com" target=_blank rel=noopener>Facebook</a><a href="https://www.instagram.com" target=_blank rel=noopener>Instagram</a><a href="https://www.linkedin.com" target=_blank rel=noopener>LinkedIn</a></div>`;
 V.prof=()=>`<h2>${t('profT')}</h2><div class=card><b>${esc(me.name)}</b><div class=mu>${t('loginName')}: ${esc(me.user)}</div><p><span class=bdg>${t(me.role)}</span></p></div><div class="card mu">${t('privacy')}</div><button class=btn data-a=out>${t('logout')}</button>`;
 
+const empEd=()=>{const e=EMP.find(x=>x.id==ED.uid);
+ return `<button class=lnk data-a=back>${t('back')}</button><h2>${esc(e?e.name:'')}</h2>
+<div class=card><b>${t('quickT')}</b><div class=set><input type=time id=qt value="${esc(ED.q)}"><button class=sm data-a=qwk>${t('applyWk')}</button></div><button class=btn2 data-a=qany>${t('flexAll')}</button></div>
+<div class=card>${ED.days.map((d,i)=>`<div class=dayrow><b>${wdn(i+1)}</b><select data-a=dm data-i=${i}><option value=time${d.m=='time'?' selected':''}>${t('mTime')}</option><option value=any${d.m=='any'?' selected':''}>${t('mAny')}</option><option value=off${d.m=='off'?' selected':''}>${t('mOff')}</option></select>${d.m=='time'?`<input type=time data-a=dt data-i=${i} value="${esc(d.s)}">`:''}</div>`).join('')}</div>
+<div class=card><b>${t('sitesFor')}</b>${SITES.length?SITES.map(s=>`<label class=chk><input type=checkbox data-a=ds data-id="${esc(s.id)}"${ED.sites.includes(s.id)?' checked':''}> ${esc(s.name)}</label>`).join(''):`<div class=mu>${t('noSites')}</div>`}</div>
+<button class=btn data-a=schedSave>${t('save')}</button>`};
+const siteEd=()=>`<button class=lnk data-a=back>${t('back')}</button><h2>${t('sitesT')}</h2><div class=card><label>${t('siteName')}<input id=sn value="${esc(SE.name)}"></label><label>${t('coords')}<input id=sc value="${esc(SE.coords)}" placeholder="54.6872, 25.2797"></label><button class=btn2 data-a=useLoc>${t('useLoc')}</button><label>${t('radius')}<input id=sr type=number min=20 max=5000 value="${+SE.r}"></label></div><button class=btn data-a=siteSave>${t('save')}</button>${SE.id?`<button class="btn2 rj" data-a=siteDel>${t('delT')}</button>`:''}`;
+V.set=async()=>{
+ if(st.sub=='emp'&&ED)return empEd();
+ if(st.sub=='site'&&SE)return siteEd();
+ const th=(k,l)=>`<button class="btn2${theme==k?' sel':''}" data-a=theme data-v=${k}>${t(l)}</button>`;
+ let h=`<h2>${t('setT')}</h2><div class=card><b>${t('theme')}</b><div>${th('auto','thAuto')}${th('light','thLight')}${th('dark','thDark')}</div></div>`;
+ if(me.role=='employer')h+=`<div class=card><b>${t('defStart')}</b><div class=mu>${t('defHelp')}</div><div class=set><input type=time id=wsv value="${esc(WS)}"><button class=sm data-a=ws>${t('save')}</button></div></div>
+<div class=card><div class=row><div class=g><b>${t('strictT')}</b><div class=mu>${t('strictH')}</div></div><button class="sm${STRICT?'':' ghost2'}" data-a=strict>${STRICT?t('on'):t('off')}</button></div></div>
+<h3>${t('sitesT')}</h3>`+(SITES.length?SITES.map(s=>`<div class="card row"><div class=g><b>${esc(s.name)}</b><div class=mu>${(+s.lat).toFixed(5)}, ${(+s.lng).toFixed(5)}, ${+s.radius_m} m</div></div><button class=sm data-a=siteEdit data-id="${esc(s.id)}">✎</button></div>`).join(''):`<div class="card mu">${t('noSites')}</div>`)+`<button class=btn2 data-a=siteNew>${t('addSite')}</button><h3>${t('schedT')}</h3>`+EMP.map(e=>`<div class="card row"><div class=g><b>${esc(e.name)}</b><div class=mu>${esc(sum(e.id))}</div></div><button class=sm data-a=emp data-id="${esc(e.id)}">✎</button></div>`).join('');
+ else h+=`<h3>${t('myPlan')}</h3><div class=card>${[1,2,3,4,5,6,7].map(w=>{const p=planW(me.id,w);return `<div class=dayrow><b>${wdn(w)}</b><span>${p.m=='time'?esc(p.s):p.m=='any'?t('mAny'):t('mOff')}</span></div>`}).join('')}</div>`;
+ return h};
+async function loadData(){
+ const [a,b,c,d]=await Promise.all([sb.from('sites').select('*').order('name'),sb.from('schedules').select('*'),sb.from('employee_sites').select('*'),sb.from('settings').select('*').eq('id',1).maybeSingle()]);
+ SITES=a.data||[];SCH={};(b.data||[]).forEach(r=>(SCH[r.user_id]=SCH[r.user_id]||[]).push(r));ES={};(c.data||[]).forEach(r=>(ES[r.user_id]=ES[r.user_id]||[]).push(r.site_id));
+ if(d.data){if(d.data.work_start)WS=String(d.data.work_start).slice(0,5);STRICT=!!d.data.strict_gps}
+}
+function csv(){
+ const q=v=>{let s=String(v==null?'':v);if(/^[=+\-@]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'};
+ const rows=[[t('dateL'),t('empL'),t('cArr'),t('cOut'),t('cMin'),t('cDelta'),t('cSite'),t('cDist'),t('cStatus'),t('cComment')]].concat(cache.map(x=>{const m=mins(x.out)-mins(x.time);return[x.date,x.name,x.time,x.out,m>0?m:'',x.smode=='time'?x.dm:'',x.site,x.dist,x.rt?'retake':x.ok?'confirmed':x.no?'rejected':'pending',x.c]}));
+ const b=new Blob(['\ufeff'+rows.map(r=>r.map(q).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');
+ a.href=URL.createObjectURL(b);a.download='atvykau-'+today()+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
 async function render(){
  const n=++seq,m=$('#m'),nav=$('#n');
  document.documentElement.lang=lang=='lt'?'lt':'en-GB';
@@ -171,7 +240,7 @@ async function render(){
  nav.innerHTML=[['home','🏠'],['hist','🕘'],['about','ℹ️'],['prof','👤']].map(([k,i])=>`<button data-a=tab data-t=${k} class="${tab==k?'on':''}"><span>${i}</span>${t(k)}</button>`).join('');
  let h;try{h=await V[tab]()}catch{h=`<div class=er>${t('loadFail')}</div>`}
  if(n!=seq)return;
- m.innerHTML=`<div class=top><span class=who>👤 ${esc(me.name)}, ${t('r_'+me.role)}</span>${langB()}</div>`+(st.msg?`<div class=ok>${esc(st.msg)}</div>`:'')+(st.err?`<div class=er>${esc(st.err)}</div>`:'')+h;
+ m.innerHTML=`<div class=top><span class=who>👤 ${esc(me.name)}, ${t('r_'+me.role)}</span><div class=tr>${langB()}<button class=gear data-a=gear aria-label="${t('setT')}">⚙️</button></div></div>`+(st.msg?`<div class=ok>${esc(st.msg)}</div>`:'')+(st.err?`<div class=er>${esc(st.err)}</div>`:'')+h;
  $('#lb').innerHTML=st.lb?`<div class=lbx data-a=lbx><img src="${st.lb}" alt=""></div>`:'';
 }
 async function login(u,pw){
@@ -184,7 +253,7 @@ async function start(u){
  const {data:p}=await sb.from('profiles').select('*').eq('id',u.id).maybeSingle();
  if(!p){await sb.auth.signOut();st.err=t('noProf');return render()}
  me={id:u.id,user:p.username,name:p.full_name,role:p.role};
- const s=await sb.from('settings').select('work_start').eq('id',1).maybeSingle();if(s.data&&s.data.work_start)WS=String(s.data.work_start).slice(0,5);
+ await loadData();
  if(me.role=='employer'){const {data:e}=await sb.from('profiles').select('id,full_name').eq('role','employee').order('full_name');EMP=(e||[]).map(x=>({id:x.id,name:x.full_name}))}
  tab='home';st.err=st.msg='';render();
 }
@@ -193,19 +262,25 @@ async function doIn(f){
  st.busy=1;st.err=st.msg='';render();
  try{
   if((await B.mine()).some(x=>x.date==today()))st.err=t('dup');
-  else{const path=await up(f,'in-');await B.add(path);const d=diff({time:nowHM(),ws:WS});st.msg=t('okIn')+(d>0?' '+t('lateYou',d,WS):'')}
- }catch(e){st.err=t('saveFail')+' ('+((e&&(e.code||e.message))||'?')+')'}
+  else{const pos=await getPos(),path=await up(f,'in-');await B.add(path,pos);const x=(await B.mine()).find(r=>r.date==today()),d=x&&x.dm;st.msg=t('okIn')+(d>0?' '+t('lateYou',d,x.ss):'')}
+ }catch(e){st.err=em(e,'saveFail')}
  st.busy=0;render();
 }
 async function doOut(f){
  st.busy=1;st.err=st.msg='';render();
- try{const path=await up(f,'out-');await B.leave(path);st.msg=t('okOut')}
- catch(e){st.err=t('outFail')+' ('+((e&&(e.code||e.message))||'?')+')'}
+ try{const pos=await getPos(),path=await up(f,'out-');await B.leave(path,pos);st.msg=t('okOut')}
+ catch(e){st.err=em(e,'outFail')}
+ st.busy=0;render();
+}
+async function doRetake(f){
+ st.busy=1;st.err=st.msg='';render();
+ try{const path=await up(f,'re-');await B.retake(path);st.msg=t('retakeDone')}
+ catch(e){st.err=em(e,'retakeFail')}
  st.busy=0;render();
 }
 document.addEventListener('click',async e=>{
  const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a;
- if(a=='tab'){tab=b.dataset.t;st.msg=st.err='';render()}
+ if(a=='tab'){tab=b.dataset.t;st.sub='';ED=null;SE=null;st.msg=st.err='';render()}
  else if(a=='lang'){lang=b.dataset.l=='en'?'en':'lt';lsSet('atv_lang',lang);st.msg=st.err='';render()}
  else if(a=='img'){st.lb=ph((cache[+b.dataset.i]||{})[b.dataset.k]);render()}
  else if(a=='lbx'){st.lb='';render()}
@@ -214,13 +289,43 @@ document.addEventListener('click',async e=>{
  else if(a=='rjno'){st.rej='';render()}
  else if(a=='rjgo'){const c=($('#rcm').value||'').trim();if(!c){st.err=t('needC');return render()}try{await B.decide(b.dataset.id,{no:1,c});st.rej='';st.err=''}catch{st.err=t('rejFail')}render()}
  else if(a=='ws'){const v=$('#wsv').value;if(!/^\d\d:\d\d$/.test(v))return;try{const r=await sb.rpc('set_work_start',{p_start:v});if(r.error)throw r.error;WS=v;st.err='';st.msg=t('wsOk')}catch{st.msg='';st.err=t('wsFail')}render()}
+ else if(a=='gear'){tab='set';st.sub='';ED=null;SE=null;st.msg=st.err='';render()}
+ else if(a=='back'){st.sub='';ED=null;SE=null;st.err='';render()}
+ else if(a=='theme'){theme=b.dataset.v;lsSet('atv_theme',theme);applyTheme();render()}
+ else if(a=='strict'){try{const r=await sb.rpc('set_strict_gps',{p:!STRICT});if(r.error)throw r.error;STRICT=!STRICT;st.err=''}catch{st.err=t('saveFail')}render()}
+ else if(a=='rt'){b.disabled=true;try{await B.askRetake(b.dataset.id);st.err=''}catch{st.err=t('rtFail')}render()}
+ else if(a=='csv')csv();
+ else if(a=='siteNew'){SE={id:'',name:'',coords:'',r:150};st.sub='site';st.err=st.msg='';render()}
+ else if(a=='siteEdit'){const s=SITES.find(x=>x.id==b.dataset.id);if(s){SE={id:s.id,name:s.name,coords:s.lat+', '+s.lng,r:s.radius_m};st.sub='site';st.err=st.msg='';render()}}
+ else if(a=='useLoc'){SE.name=$('#sn').value;SE.r=$('#sr').value;const p=await getPos();if(!p){st.err=t('locFail');return render()}SE.coords=p.lat.toFixed(6)+', '+p.lng.toFixed(6);st.err='';render()}
+ else if(a=='siteSave'){SE.name=$('#sn').value.trim();SE.coords=$('#sc').value;SE.r=Math.max(20,Math.min(5000,+$('#sr').value||150));
+  const m=SE.coords.match(/^\s*(-?\d+(?:\.\d+)?)\s*[,;\s]\s*(-?\d+(?:\.\d+)?)\s*$/);
+  if(!SE.name||!m||Math.abs(+m[1])>90||Math.abs(+m[2])>180){st.err=t('badCoords');return render()}
+  const row={name:SE.name,lat:+m[1],lng:+m[2],radius_m:SE.r};
+  try{const x=await (SE.id?sb.from('sites').update(row).eq('id',SE.id):sb.from('sites').insert(row));if(x.error)throw x.error;await loadData();SE=null;st.sub='';st.err='';st.msg=t('siteSaved')}catch{st.err=t('saveFail')}render()}
+ else if(a=='siteDel'){try{const x=await sb.from('sites').delete().eq('id',SE.id);if(x.error)throw x.error;await loadData();SE=null;st.sub='';st.err=''}catch{st.err=t('saveFail')}render()}
+ else if(a=='emp'){const u=b.dataset.id;ED={uid:u,q:WS,days:[1,2,3,4,5,6,7].map(w=>{const p=planW(u,w);return{m:p.m,s:p.s}}),sites:[...(ES[u]||[])]};st.sub='emp';st.err=st.msg='';render()}
+ else if(a=='qwk'){ED.days=ED.days.map((d,i)=>i<5?{m:'time',s:ED.q||WS}:{m:'off',s:''});render()}
+ else if(a=='qany'){ED.days=ED.days.map(()=>({m:'any',s:''}));render()}
+ else if(a=='schedSave'){try{
+  const rows=ED.days.map((d,i)=>({user_id:ED.uid,weekday:i+1,mode:d.m,start_time:d.m=='time'?(d.s||WS):null}));
+  let r=await sb.from('schedules').upsert(rows,{onConflict:'user_id,weekday'});if(r.error)throw r.error;
+  r=await sb.from('employee_sites').delete().eq('user_id',ED.uid);if(r.error)throw r.error;
+  if(ED.sites.length){r=await sb.from('employee_sites').insert(ED.sites.map(s=>({user_id:ED.uid,site_id:s})));if(r.error)throw r.error}
+  await loadData();ED=null;st.sub='';st.err='';st.msg=t('schedSaved')}catch{st.err=t('saveFail')}render()}
  else if(a=='out'){await sb.auth.signOut();me=null;EMP=[];tab='home';st.err=st.msg='';render()}
  else if(a=='clr'){flt={d:'',e:''};render()}
 });
 document.addEventListener('submit',e=>{if(e.target.id=='f'){e.preventDefault();login($('#em').value,$('#pw').value)}});
-document.addEventListener('change',e=>{const i=e.target.id;if(i=='fd'){flt.d=e.target.value;render()}else if(i=='fe'){flt.e=e.target.value;render()}});
-[['cam',doIn],['gal',doIn],['camo',doOut],['galo',doOut]].forEach(([id,fn])=>$('#'+id).addEventListener('change',e=>{const f=e.target.files[0];e.target.value='';if(f&&!st.busy)fn(f)}));
-render();
+document.addEventListener('change',e=>{const x=e.target,i=x.id,a=x.dataset.a,n=+x.dataset.i;
+ if(i=='fd'){flt.d=x.value;render()}else if(i=='fe'){flt.e=x.value;render()}
+ else if(a=='dm'){ED.days[n].m=x.value;if(x.value=='time'&&!ED.days[n].s)ED.days[n].s=WS;render()}
+ else if(a=='dt'){ED.days[n].s=x.value}
+ else if(a=='ds'){const id=x.dataset.id;ED.sites=x.checked?[...new Set([...ED.sites,id])]:ED.sites.filter(s=>s!=id)}
+ else if(i=='qt'){ED.q=x.value}
+});
+[['cam',doIn],['gal',doIn],['camo',doOut],['galo',doOut],['camr',doRetake],['galr',doRetake]].forEach(([id,fn])=>$('#'+id).addEventListener('change',e=>{const f=e.target.files[0];e.target.value='';if(f&&!st.busy)fn(f)}));
+applyTheme();render();
 (async()=>{try{const {data}=await sb.auth.getSession();if(data.session)await start(data.session.user)}catch{}})();
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
 </script></body></html>
