@@ -74,8 +74,61 @@ a{color:var(--pr)}
 .pin{position:absolute;left:50%;top:50%;width:0;height:0;z-index:1000;pointer-events:none}
 .pin::before{content:"";position:absolute;left:-15px;top:-46px;width:30px;height:30px;border-radius:50%;background:var(--pr);border:4px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.45);box-sizing:border-box}
 .pin::after{content:"";position:absolute;left:-2px;top:-16px;width:4px;height:16px;background:var(--pr);box-shadow:0 0 0 1px #fff}
+
+:root{--pr2:#12a0b5;--sh:0 6px 20px rgba(11,110,138,.10)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--pr2:#1d7c93;--sh:0 6px 20px rgba(0,0,0,.4)}}
+:root[data-theme=dark]{--pr2:#1d7c93;--sh:0 6px 20px rgba(0,0,0,.4)}
+body{-webkit-tap-highlight-color:transparent}
+main{padding:12px 16px 28px}
+.card{box-shadow:var(--sh);border-color:transparent;border-radius:18px}
+.btn,.btn2,.sm,.big,.cd,.wc,.item,.lang button,.gear,.seg button{transition:transform .08s ease,opacity .15s,background .15s}
+.btn:active,.btn2:active,.sm:active,.big:active,.cd:active,.wc:active,.item:active{transform:scale(.97)}
+:focus-visible{outline:3px solid color-mix(in srgb,var(--pr) 55%,transparent);outline-offset:2px}
+.btn{background:linear-gradient(135deg,var(--pr),var(--pr2));box-shadow:0 6px 16px color-mix(in srgb,var(--pr) 28%,transparent)}
+nav{box-shadow:0 -4px 18px rgba(0,0,0,.06)}
+nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+nav button span{font-size:11px;display:block}
+nav .on svg{stroke-width:2.3}
+.top{margin-bottom:12px}
+.top .who{display:flex;gap:10px;align-items:center;flex:1;min-width:0;white-space:normal;overflow:visible;color:var(--tx);font-size:inherit}
+.who>span:last-child{display:flex;flex-direction:column;min-width:0;line-height:1.2}
+.who b{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.who small{color:var(--mu);font-size:12px}
+.ava{width:40px;height:40px;border-radius:50%;color:#fff;display:inline-grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.gear{display:grid;place-items:center;padding:0}.gear svg{width:20px;height:20px}
+.lang button,.gear{border-radius:12px}
+.logo{background:linear-gradient(135deg,var(--pr),var(--pr2));box-shadow:0 8px 20px color-mix(in srgb,var(--pr) 30%,transparent)}
+.hero{background:linear-gradient(135deg,var(--pr),var(--pr2));color:#fff;border-radius:22px;padding:18px 18px 16px;margin:2px 0 14px;box-shadow:var(--sh)}
+.hero h2{margin:2px 0 8px;font-size:26px}.hs{font-size:13px;opacity:.85}.hp{display:flex;gap:6px;align-items:center;font-size:15px;margin-top:4px}.hp.dim{opacity:.8;font-size:13px}.hp svg{width:16px;height:16px;flex:none}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.stat{background:var(--cd);border-radius:16px;padding:12px 6px;text-align:center;box-shadow:var(--sh)}.stat b{display:block;font-size:24px}.stat span{font-size:12px;color:var(--mu)}
+.item{width:100%;text-align:left;font:inherit;color:var(--tx);cursor:pointer;display:flex;align-items:center;gap:12px}
+.item .db{display:block}.chev{color:var(--mu);font-size:24px;line-height:1}
+.spin{width:34px;height:34px;border-radius:50%;border:3px solid var(--bd);border-top-color:var(--pr);animation:sp .8s linear infinite;margin:70px auto}@keyframes sp{to{transform:rotate(360deg)}}
+.fade{animation:fd .25s ease}@keyframes fd{from{opacity:0;transform:translateY(6px)}}
+#toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;pointer-events:none;max-width:min(92vw,520px);padding:12px 16px;border-radius:14px;font-weight:600;box-shadow:0 10px 28px rgba(0,0,0,.28);transition:.25s;z-index:20;text-align:center}
+#toast.on{opacity:1;transform:translate(-50%,0)}#toast.ok{background:#16874f;color:#fff}#toast.er{background:#b3261e;color:#fff}
+.big{animation:pulse 2.4s ease-out infinite;box-shadow:none;background:linear-gradient(135deg,var(--pr),var(--pr2))}
+.big.off{animation:none}
+.big svg{width:54px;height:54px;margin:0 auto 6px;display:block}
+label.big.sm2{background:var(--tx);color:var(--bg);animation:none}.sm2 svg{width:36px;height:36px}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--pr) 38%,transparent)}100%{box-shadow:0 0 0 24px transparent}}
+.gpsok{display:flex;gap:6px;align-items:center;color:var(--ok);font-size:13px;font-weight:600;margin:0 2px 12px}.gpsok svg{width:16px;height:16px}
+.gpsw{background:var(--erb);color:var(--ert);border-radius:18px;padding:14px;margin:0 0 14px;display:grid;gap:8px}
+.gpsw b{display:flex;gap:6px;align-items:center}.gpsw svg{width:18px;height:18px}.gpsw .steps{margin:0;padding-left:20px;color:var(--tx)}.gpsw .steps li{margin:5px 0}
+.gpsw .acts{margin-top:2px}.gpsw .sm{background:var(--ert);color:#fff}.gpsw .sm.ghost{background:transparent;color:var(--ert);border:1px solid var(--ert)}
+.wdc{display:flex;gap:6px;margin:8px 0 2px}
+.wc{flex:1;min-width:0;min-height:42px;border-radius:12px;border:1px solid var(--bd);background:var(--cd);color:var(--tx);font:inherit;font-weight:700;font-size:13px;padding:0}
+.wc.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+.wdp{display:flex;gap:14px;margin-bottom:4px}.wdp .lnk{padding:6px 0;font-size:14px}
+.tl{display:block;flex:1;min-width:0;font-size:12px;color:var(--mu);font-weight:600;margin:0}.tl input{margin-top:3px}
+.set.tm{margin:0 0 12px}
+.dayrow select{min-width:120px}
+.sm.ghost{background:var(--bd);color:var(--tx)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head>
 <body><div id="app"><main id="m"></main><nav id="n"></nav></div><div id="lb"></div>
+<div id="toast"></div>
 <input type="file" id="cam" accept="image/*" capture="environment" class="vh">
 <input type="file" id="gal" accept="image/*" class="vh">
 <input type="file" id="camo" accept="image/*" capture="environment" class="vh">
@@ -142,9 +195,9 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const lsGet=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
 const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-let me=null,tab='home',flt={d:'',e:''},cache=[],seq=0,EMP=[],WS='08:00',lang=lsGet('atv_lang','lt')=='en'?'en':'lt';
+let me=null,tab='home',flt={d:'',e:''},cache=[],seq=0,EMP=[],WS='08:00',WE='',lang=lsGet('atv_lang','lt')=='en'?'en':'lt';
 let SITES=[],SCH={},ES={},STRICT=false,theme=lsGet('atv_theme','auto'),ED=null,SE=null,OV={},CAL=null,MAP=null,MAPC=null,GPS='unknown',GPSERR=0;
-const st={busy:0,err:'',msg:'',lb:'',rej:'',sub:''};
+const st={busy:0,err:'',msg:'',lb:'',rej:'',sub:'',gh:0};
 const t=(k,...a)=>String(I[lang][k]??I.lt[k]??k).replace(/\{(\d)\}/g,(_,i)=>a[i]);
 const norm=s=>String(s).normalize('NFD').replace(/\p{M}/gu,'').toLowerCase().trim().replace(/\s+/g,'.');
 const p2=n=>String(n).padStart(2,'0');
@@ -152,27 +205,70 @@ const today=()=>{const d=new Date();return d.getFullYear()+'-'+p2(d.getMonth()+1
 const fd=s=>{const d=new Date(s+'T12:00:00');return isNaN(d)?esc(s):new Intl.DateTimeFormat(lang=='lt'?'lt-LT':'en-GB',{day:'numeric',month:'long',year:'numeric'}).format(d)};
 const hmOf=x=>x?new Date(x).toLocaleTimeString('lt-LT',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Europe/Vilnius'}):'';
 const mins=s=>{const a=String(s||'').split(':');return a.length>=2?a[0]*60+ +a[1]:NaN};
+Object.assign(I.lt,{sched:'Grafikas',hOnly:'{0} val.',mOnly:'{0} min.',late:'Pavėlavo {0}',early:' ({0} anksčiau)',lateYou:'Pavėlavote {0} Darbo pradžia {1}.',overdue:'vėluoja {0}',extra:'Papildomai {0}',short:'Per mažai {0}',onPlan:'Pagal planą',
+planTime:'Šiandien: {0}',tomorrow:'Rytoj: {0}',stArr:'Atvyko',stLate:'Vėlavo',stMiss:'Dar nėra',schedHelp:'Pasirinkite darbuotoją, kad nustatytumėte jo grafiką.',noEmp:'Darbuotojų dar nėra.',mySchedT:'Mano grafikas',next7:'Artimiausios 7 dienos',today:'Šiandien',tmrW:'Rytoj',
+selWe:'Št–Sk',pickDays:'Savaitės dienos',markMonth:'Pažymėti mėnesyje',restOff:'Likusios dienos nedirba',startL:'Pradžia',endL:'Pabaiga',defHours:'Numatytosios darbo valandos',defHelp2:'Taikoma darbuotojams be individualaus grafiko (Pr–Pn). Pabaiga neprivaloma.',
+calHelp:'Bakstelėkite dienas arba pasirinkite savaitės dienas, nustatykite laiką ir spauskite „Taikyti“.',gpsHide:'Slėpti',gpsRecheck:'Patikrinti dar kartą',
+steps_ios:'Atidarykite telefono Nustatymai.|Pasirinkite Privatumas ir sauga → Vietos nustatymas ir įjunkite.|Susiraskite Safari svetainės (arba naudojamą naršyklę) ir pasirinkite „Kai naudojama“ arba „Klausti“.|Grįžkite į programėlę ir paspauskite „Patikrinti dar kartą“.',
+steps_and:'Naršyklėje (Chrome) paspauskite spynos arba nustatymų piktogramą šalia adreso.|Pasirinkite Leidimai → Vieta → Leisti.|Įsitikinkite, kad telefono Vieta (GPS) įjungta greituosiuose nustatymuose.|Grįžkite į programėlę ir paspauskite „Patikrinti dar kartą“.',
+steps_oth:'Paspauskite spynos piktogramą šalia svetainės adreso.|Leiskite šiai svetainei matyti vietą.|Paspauskite „Patikrinti dar kartą“.',
+cStart:'Grafiko pradžia',cEnd:'Grafiko pabaiga',cBal:'Skirtumas nuo plano (min.)'});
+Object.assign(I.en,{sched:'Schedule',hOnly:'{0} h',mOnly:'{0} min',late:'Late by {0}',early:' ({0} early)',lateYou:'You were {0} late. Work starts at {1}.',overdue:'{0} late',extra:'Extra {0}',short:'Short by {0}',onPlan:'As planned',
+planTime:'Today: {0}',tomorrow:'Tomorrow: {0}',stArr:'Arrived',stLate:'Late',stMiss:'Missing',schedHelp:'Choose an employee to set their schedule.',noEmp:'No employees yet.',mySchedT:'My schedule',next7:'Next 7 days',today:'Today',tmrW:'Tomorrow',
+selWe:'Sat–Sun',pickDays:'Weekdays',markMonth:'Select in this month',restOff:'Other days off',startL:'Start',endL:'End',defHours:'Default working hours',defHelp2:'Used for employees without an individual schedule (Mon–Fri). End time is optional.',
+calHelp:'Tap days or choose weekdays, set the time, then press “Apply”.',gpsHide:'Hide',gpsRecheck:'Check again',
+steps_ios:'Open the phone Settings.|Go to Privacy & Security → Location Services and turn it on.|Find Safari Websites (or the browser you use) and choose “While Using” or “Ask”.|Return to the app and press “Check again”.',
+steps_and:'In the browser (Chrome) tap the padlock or settings icon next to the address.|Choose Permissions → Location → Allow.|Make sure Location (GPS) is on in the phone quick settings.|Return to the app and press “Check again”.',
+steps_oth:'Click the padlock icon next to the site address.|Allow this site to see your location.|Press “Check again”.',
+cStart:'Scheduled start',cEnd:'Scheduled end',cBal:'Difference from plan (min)'});
+const LOC=()=>lang=='lt'?'lt-LT':'en-GB';
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const wds=w=>cap(new Intl.DateTimeFormat(LOC(),{weekday:'short'}).format(new Date(2024,0,w)));
+const wdn=w=>cap(new Intl.DateTimeFormat(LOC(),{weekday:'long'}).format(new Date(2024,0,w)));
+const sdt=ds=>new Intl.DateTimeFormat(LOC(),{day:'numeric',month:'short'}).format(new Date(ds+'T12:00:00'));
 const wdOf=ds=>{const d=new Date(ds+'T12:00:00').getDay();return d==0?7:d};
-const planW=(uid,w)=>{const rows=SCH[uid];if(rows&&rows.length){const r=rows.find(x=>x.weekday==w);return r?{m:r.mode,s:r.start_time?String(r.start_time).slice(0,5):''}:{m:'off',s:''}}return w<=5?{m:'time',s:WS}:{m:'off',s:''}};
-const plan=(uid,ds)=>{const o=OV[uid]&&OV[uid][ds];return o?{m:o.mode,s:o.start_time?String(o.start_time).slice(0,5):'',ov:1}:planW(uid,wdOf(ds))};
-const sum=uid=>{if(!(SCH[uid]||[]).length)return t('defSched',WS);const p=[1,2,3,4,5,6,7].map(w=>planW(uid,w));if(p.every(x=>x.m=='any'))return t('flexSched');const wk=p.slice(0,5);if(wk.every(x=>x.m=='time'&&x.s==wk[0].s)&&p[5].m=='off'&&p[6].m=='off')return t('sumWk',wk[0].s);return t('sumVar')};
-const wdn=w=>{const s=new Intl.DateTimeFormat(lang=='lt'?'lt-LT':'en-GB',{weekday:'long'}).format(new Date(2024,0,w));return s.charAt(0).toUpperCase()+s.slice(1)};
-const getPos=()=>new Promise(r=>{if(!navigator.geolocation){GPS='unsupported';return r(null)}navigator.geolocation.getCurrentPosition(p=>{GPS='granted';GPSERR=0;r({lat:p.coords.latitude,lng:p.coords.longitude,acc:Math.round(p.coords.accuracy)})},e=>{GPSERR=e.code;if(e.code==1)GPS='denied';r(null)},{enableHighAccuracy:true,timeout:15000,maximumAge:0})});
+const hh=s=>s?String(s).slice(0,5):'';
+const planW=(uid,w)=>{const rows=SCH[uid];if(rows&&rows.length){const r=rows.find(x=>x.weekday==w);return r?{m:r.mode,s:hh(r.start_time),e:hh(r.end_time)}:{m:'off',s:'',e:''}}return w<=5?{m:'time',s:WS,e:WE}:{m:'off',s:'',e:''}};
+const plan=(uid,ds)=>{const o=OV[uid]&&OV[uid][ds];return o?{m:o.mode,s:hh(o.start_time),e:hh(o.end_time),ov:1}:planW(uid,wdOf(ds))};
+const rng=p=>p.m=='time'?p.s+(p.e?'–'+p.e:''):p.m=='any'?t('mAny'):t('mOff');
+const sum=uid=>{if(!(SCH[uid]||[]).length)return t('defSched',WS+(WE?'–'+WE:''));const p=[1,2,3,4,5,6,7].map(w=>planW(uid,w));if(p.every(x=>x.m=='any'))return t('flexSched');const wk=p.slice(0,5);if(wk.every(x=>x.m=='time'&&x.s==wk[0].s&&x.e==wk[0].e)&&p[5].m=='off'&&p[6].m=='off')return t('sumWk',rng(wk[0]));return t('sumVar')};
+const fm=n=>{n=Math.round(Math.abs(n));const h=Math.floor(n/60),m=n%60;return h&&m?t('hm',h,m):h?t('hOnly',h):t('mOnly',m)};
+const dur=x=>{const m=mins(x.out)-mins(x.time);return m>0?fm(m):''};
+const bal=x=>{if(x.smode!='time'||!x.ss||!x.se||!x.out)return null;const w=mins(x.out)-mins(x.time),p=mins(x.se)-mins(x.ss);return w>0&&p>0?w-p:null};
+const IC={home:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>',hist:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',sched:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',prof:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',set:'<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/>',pin:'<path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',cam:'<path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="4"/>'};
+const ico=k=>`<svg viewBox="0 0 24 24" width=24 height=24 fill=none stroke=currentColor stroke-width=1.9 stroke-linecap=round stroke-linejoin=round aria-hidden=true>${IC[k]}</svg>`;
+const ava=n=>{let h=0;for(const c of String(n))h=(h*31+c.charCodeAt(0))%360;return `<span class=ava style="background:hsl(${h} 52% 40%)">${esc(String(n).split(' ').filter(Boolean).map(w=>w[0]).slice(0,2).join('').toUpperCase())}</span>`};
+let lastKey='',tt=0;
+const toast=(k,m)=>{const e=$('#toast');e.className='on '+k;e.textContent=m;clearTimeout(tt);tt=setTimeout(()=>{e.className=''},4500)};
 const gpsInit=async()=>{try{if(navigator.permissions&&navigator.permissions.query){const p=await navigator.permissions.query({name:'geolocation'});GPS=p.state;p.onchange=()=>{GPS=p.state;if(me&&me.role=='employee')render()}}}catch{}};
 const askGps=async()=>{await getPos();render()};
-const gpsCard=()=>GPS=='granted'?`<p class=mu>📍 ${t('gpsOn')}</p>`:`<div class=card style="border-color:var(--ert)"><b style="color:var(--ert)">📍 ${t('gpsT')}</b><div class=mu>${GPS=='denied'||GPS=='unsupported'?t('gpsOff'):GPSERR>1?t('gpsUnavail'):t('gpsPrompt')}</div><button class=btn data-a=gps>${t('gpsAllow')}</button><details><summary class=lnk>${t('gpsHow')}</summary><div class=mu style="margin-top:8px">${t('gpsIos')}<br><br>${t('gpsAnd')}</div></details></div>`;
+const plat=()=>/iPhone|iPad|iPod/.test(navigator.userAgent)?'ios':/Android/.test(navigator.userAgent)?'and':'oth';
+const gpsCard=()=>{
+ if(GPS=='granted')return `<div class=gpsok>${ico('pin')} ${t('gpsOn')}</div>`;
+ const dn=GPS=='denied'||GPS=='unsupported';
+ return `<div class=gpsw><b>${ico('pin')} ${t('gpsT')}</b><div>${dn?t('gpsOff'):GPSERR>1?t('gpsUnavail'):t('gpsPrompt')}</div>${st.gh?`<ol class=steps>${t('steps_'+plat()).split('|').map(s=>`<li>${esc(s)}</li>`).join('')}</ol>`:''}<div class=acts>${dn?`<button class="sm ghost" data-a=ghow>${t(st.gh?'gpsHide':'gpsHow')}</button>`:''}<button class=sm data-a=gps>${t(dn?'gpsRecheck':'gpsAllow')}</button></div></div>`};
 const iso=(y,m,d)=>y+'-'+p2(m+1)+'-'+p2(d);
 const monthDays=(y,m)=>Array.from({length:new Date(y,m+1,0).getDate()},(_,i)=>iso(y,m,i+1));
-const newCal=()=>{const n=new Date();return{y:n.getFullYear(),m:n.getMonth(),sel:[],mode:'time',time:WS}};
-const tmr=()=>{const n=new Date(Date.now()+864e5),q=plan(me.id,iso(n.getFullYear(),n.getMonth(),n.getDate()));return q.m=='time'?q.s:q.m=='any'?t('mAny'):t('mOff')};
+const newCal=()=>{const n=new Date();return{y:n.getFullYear(),m:n.getMonth(),sel:[],mode:'time',time:WS,end:WE,wd:[1,2,3,4,5]}};
+const dayPlan=i=>{const n=new Date(Date.now()+i*864e5),ds=iso(n.getFullYear(),n.getMonth(),n.getDate());return{ds,p:plan(me.id,ds)}};
+const tmr=()=>rng(dayPlan(1).p);
 const calGrid=(uid,edit)=>{
- const {y,m}=CAL,first=new Date(y,m,1),lead=(first.getDay()+6)%7,n=new Date(y,m+1,0).getDate(),td=today(),loc=lang=='lt'?'lt-LT':'en-GB';
- let h=`<div class=row><button class=sm data-a=cm data-d=-1>‹</button><b class=g style="text-align:center">${new Intl.DateTimeFormat(loc,{month:'long',year:'numeric'}).format(first)}</b><button class=sm data-a=cm data-d=1>›</button></div><div class=cal>`;
- for(let i=1;i<=7;i++)h+=`<button class=h ${edit?`data-a=cwd data-w=${i}`:'disabled'}>${new Intl.DateTimeFormat(loc,{weekday:'short'}).format(new Date(2024,0,i))}</button>`;
+ const {y,m}=CAL,first=new Date(y,m,1),lead=(first.getDay()+6)%7,n=new Date(y,m+1,0).getDate(),td=today();
+ let h=`<div class=row><button class=sm data-a=cm data-d=-1 aria-label="‹">‹</button><b class=g style="text-align:center">${cap(new Intl.DateTimeFormat(LOC(),{month:'long',year:'numeric'}).format(first))}</b><button class=sm data-a=cm data-d=1 aria-label="›">›</button></div><div class=cal>`;
+ for(let i=1;i<=7;i++)h+=`<button class=h ${edit?`data-a=cwd data-w=${i}`:'disabled'}>${wds(i)}</button>`;
  for(let i=0;i<lead;i++)h+='<span></span>';
  for(let d=1;d<=n;d++){const ds=iso(y,m,d),p=plan(uid,ds),past=ds<td;
   h+=`<button class="cd${CAL.sel.includes(ds)?' sel':''}${p.ov?' ov':''}${p.m=='off'?' off':''}${past?' past':''}${ds==td?' td':''}" ${edit&&!past?`data-a=cday data-d=${ds}`:'disabled'}><span>${d}</span><small>${p.m=='time'?esc(p.s):p.m=='any'?t('anyS'):'–'}</small></button>`}
  return h+'</div>'};
+const wdChips=(sel,c)=>`<div class=wdc>${[1,2,3,4,5,6,7].map(w=>`<button class="wc${sel.includes(w)?' on':''}" data-a=wdt data-c=${c} data-w=${w}>${wds(w)}</button>`).join('')}</div><div class=wdp><button class=lnk data-a=wdp data-c=${c} data-p=wk>${t('selWk')}</button><button class=lnk data-a=wdp data-c=${c} data-p=all>${t('selAll')}</button><button class=lnk data-a=wdp data-c=${c} data-p=we>${t('selWe')}</button></div>`;
+const getPos=()=>new Promise(r=>{if(!navigator.geolocation){GPS='unsupported';return r(null)}navigator.geolocation.getCurrentPosition(p=>{GPS='granted';GPSERR=0;r({lat:p.coords.latitude,lng:p.coords.longitude,acc:Math.round(p.coords.accuracy)})},e=>{GPSERR=e.code;if(e.code==1)GPS='denied';r(null)},{enableHighAccuracy:true,timeout:15000,maximumAge:0})});
+const applyTheme=()=>{const r=document.documentElement;theme=='light'||theme=='dark'?r.setAttribute('data-theme',theme):r.removeAttribute('data-theme')};
+const em=(e,k)=>{const m=String(e&&e.message||'');return m.includes('GPS reikalingas')?t('errGps'):m.includes('Už objekto')?t('errOut'):t(k)+' ('+((e&&(e.code||e.message))||'?')+')'};
+const loc=x=>x.lat==null?`<div class=mu>${t('noGps')}</div>`:`<div class="mu${x.inz===false?' wn':''}">${x.inz===true?t('inZone',+x.dist):x.inz===false?t('outZone',+x.dist):t('gpsOnly')}${x.site?', '+esc(x.site):''} <a href="https://www.google.com/maps?q=${+x.lat},${+x.lng}" target=_blank rel=noopener>${t('map')}</a></div>`;
+const ph=p=>/^https:\/\/[^\s"'<>]+$/.test(p||'')?p:'';
+const desc=(a,b)=>(b.date+b.time).localeCompare(a.date+a.time);
+const shrink=f=>new Promise((res,rej)=>{const r=new FileReader();r.onerror=rej;r.onload=()=>{const i=new Image();i.onerror=rej;i.onload=()=>{const k=Math.min(1,640/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);c.getContext('2d').drawImage(i,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.6))};i.src=r.result};r.readAsDataURL(f)});
+const up=async(f,tag)=>{const path=me.id+'/'+tag+today()+'-'+Date.now()+'.jpg',blob=await (await fetch(await shrink(f))).blob();const r=await sb.storage.from('photos').upload(path,blob,{contentType:'image/jpeg'});if(r.error)throw r.error;return path};
 function initMap(){
  if(MAP){MAP.remove();MAP=null}
  const el=$('#map');if(!el)return;
@@ -183,19 +279,11 @@ function initMap(){
  MAP.on('move',()=>{const c=MAP.getCenter();SE.lat=c.lat;SE.lng=c.lng;SE.z=MAP.getZoom();SE.moved=1;MAPC.setLatLng(c);const ct=$('#ct');if(ct)ct.textContent=c.lat.toFixed(5)+', '+c.lng.toFixed(5)});
  setTimeout(()=>MAP&&MAP.invalidateSize(),60);
 }
-const applyTheme=()=>{const r=document.documentElement;theme=='light'||theme=='dark'?r.setAttribute('data-theme',theme):r.removeAttribute('data-theme')};
-const em=(e,k)=>{const m=String(e&&e.message||'');return m.includes('GPS reikalingas')?t('errGps'):m.includes('Už objekto')?t('errOut'):t(k)+' ('+((e&&(e.code||e.message))||'?')+')'};
-const loc=x=>x.lat==null?`<div class=mu>${t('noGps')}</div>`:`<div class="mu${x.inz===false?' wn':''}">${x.inz===true?t('inZone',+x.dist):x.inz===false?t('outZone',+x.dist):t('gpsOnly')}${x.site?', '+esc(x.site):''} <a href="https://www.google.com/maps?q=${+x.lat},${+x.lng}" target=_blank rel=noopener>${t('map')}</a></div>`;
-const dur=x=>{const m=mins(x.out)-mins(x.time);return m>0?t('hm',Math.floor(m/60),m%60):''};
-const ph=p=>/^https:\/\/[^\s"'<>]+$/.test(p||'')?p:'';
-const desc=(a,b)=>(b.date+b.time).localeCompare(a.date+a.time);
-const shrink=f=>new Promise((res,rej)=>{const r=new FileReader();r.onerror=rej;r.onload=()=>{const i=new Image();i.onerror=rej;i.onload=()=>{const k=Math.min(1,640/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);c.getContext('2d').drawImage(i,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.6))};i.src=r.result};r.readAsDataURL(f)});
-const up=async(f,tag)=>{const path=me.id+'/'+tag+today()+'-'+Date.now()+'.jpg',blob=await (await fetch(await shrink(f))).blob();const r=await sb.storage.from('photos').upload(path,blob,{contentType:'image/jpeg'});if(r.error)throw r.error;return path};
 
 const mapRows=async rows=>{
  const paths=rows.flatMap(r=>[r.photo_path,r.left_photo_path,r.prev_photo_path]).filter(Boolean),u={};
  if(paths.length)((await sb.storage.from('photos').createSignedUrls(paths,3600)).data||[]).forEach(d=>{u[d.path]=d.signedUrl});
- return rows.map(r=>({id:r.id,empId:r.user_id,name:(r.profiles&&r.profiles.full_name)||me.name,date:r.day,time:hmOf(r.arrived_at),out:hmOf(r.left_at),smode:r.sched_mode,ss:r.sched_start?String(r.sched_start).slice(0,5):'',dm:r.delta_min,lat:r.lat,lng:r.lng,dist:r.dist_m,inz:r.in_zone,site:(r.sites&&r.sites.name)||'',rt:r.status=='retake',prev:u[r.prev_photo_path]||'',photo:u[r.photo_path]||'',lphoto:u[r.left_photo_path]||'',ok:r.status=='confirmed',no:r.status=='rejected',c:r.comment||''}))};
+ return rows.map(r=>({id:r.id,empId:r.user_id,name:(r.profiles&&r.profiles.full_name)||me.name,date:r.day,time:hmOf(r.arrived_at),out:hmOf(r.left_at),smode:r.sched_mode,ss:hh(r.sched_start),se:hh(r.sched_end),dm:r.delta_min,lat:r.lat,lng:r.lng,dist:r.dist_m,inz:r.in_zone,site:(r.sites&&r.sites.name)||'',rt:r.status=='retake',prev:u[r.prev_photo_path]||'',photo:u[r.photo_path]||'',lphoto:u[r.left_photo_path]||'',ok:r.status=='confirmed',no:r.status=='rejected',c:r.comment||''}))};
 const B={
  async mine(){const {data,error}=await sb.from('checkins').select('*,sites(name)').eq('user_id',me.id).order('day',{ascending:false});if(error)throw error;return mapRows(data)},
  async all(){const {data,error}=await sb.from('checkins').select('*,profiles(full_name),sites(name)').order('day',{ascending:false}).limit(200);if(error)throw error;return mapRows(data)},
@@ -207,11 +295,13 @@ const B={
 };
 
 const stat=x=>x.rt?`<span class="bdg w">${t('retakeNeed')}</span>`:x.ok?`<span class=bdg>${t('confirmed')}</span>`:x.no?`<span class="bdg r">${t('rejected')}</span>`:`<span class="bdg w">${t('pending')}</span>`;
-const timeB=x=>{if(x.smode=='any')return `<span class=bdg>${t('flex')}</span>`;if(x.smode=='off')return `<span class="bdg w">${t('dayOff')}</span>`;const d=x.dm;return d==null?'':d>0?`<span class="bdg w">${t('late',d)}</span>`:`<span class=bdg>${t('onTime')}${d<0?t('early',-d):''}</span>`};
+const timeB=x=>{if(x.smode=='any')return `<span class=bdg>${t('flex')}</span>`;if(x.smode=='off')return `<span class="bdg w">${t('dayOff')}</span>`;const d=x.dm;return d==null?'':d>0?`<span class="bdg w">${t('late',fm(d))}</span>`:`<span class=bdg>${t('onTime')}${d<0?t('early',fm(-d)):''}</span>`};
+const balB=x=>{const b=bal(x);return b==null?'':b>0?`<span class=bdg>${t('extra',fm(b))}</span>`:b<0?`<span class="bdg w">${t('short',fm(-b))}</span>`:`<span class=bdg>${t('onPlan')}</span>`};
 const inf=x=>`<div class=mu>${t('arr',esc(x.time))}${x.out?t('left',esc(x.out)):''}</div>${dur(x)?`<div class=mu>${t('worked',dur(x))}</div>`:''}`;
 const pics=(x,i)=>`<div class=pics>${[['photo','pArr'],['lphoto','pOut'],['prev','pArr']].map(([k,a])=>ph(x[k])?`<img src="${ph(x[k])}" alt="${t(a)}" data-a=img data-i=${i} data-k=${k}>`:'').join('')}</div>`;
 const conf=x=>x.rt?stat(x):(x.ok||x.no?stat(x):'')+(x.no&&x.c?`<div class=rc>${esc(x.c)}</div>`:'')+(x.ok?'':`<div class=acts><button class=sm data-a=ok data-id="${esc(x.id)}">${t('confirm')}</button>${x.no?'':`<button class="sm rj" data-a=rj data-id="${esc(x.id)}">${t('reject')}</button>`}<button class="sm ghost" data-a=rt data-id="${esc(x.id)}">${t('retakeBtn')}</button></div>`)+(st.rej==x.id?`<div class=rf><textarea id=rcm maxlength=200 placeholder="${t('rejPh')}"></textarea><button class="sm rj" data-a=rjgo data-id="${esc(x.id)}">${t('rejGo')}</button><button class=lnk data-a=rjno>${t('cancel')}</button></div>`:'');
 const langB=()=>`<div class=lang><button data-a=lang data-l=lt class="${lang=='lt'?'on':''}">LT</button><button data-a=lang data-l=en class="${lang=='en'?'on':''}">EN</button></div>`;
+const bigBtn=(f,lab,off)=>`<label class="big${off?' off':''}" for=${f}><span>${st.busy?t('sending'):ico('cam')+lab}</span></label>`;
 
 const V={};
 V.login=()=>`<div class=lg><div class=logo>✓</div><h1>Atvykau</h1><p class=mu>${t('tag')}</p>
@@ -221,80 +311,88 @@ ${st.err?`<div class=er style="margin-top:12px">${esc(st.err)}</div>`:''}<button
 const e0=async()=>{
  const rows=await B.mine(),x=rows.find(r=>r.date==today()),rt=rows.find(r=>r.rt);
  const p=plan(me.id,today()),ms=(ES[me.id]||[]).map(id=>SITES.find(s=>s.id==id)).filter(Boolean).map(s=>s.name);
- const hd=`<h2>${t('hello',esc(me.name.split(' ')[0]))}</h2><p class=mu>${fd(today())}<br>${p.m=='time'?t('planTime',p.s):p.m=='any'?t('planAny'):t('planOff')}${ms.length?' '+t('siteLabel',esc(ms.join(', '))):''}<br>${t('tomorrow',tmr())}</p>`;
- const rtb=rt?`<div class=card><b>${t('retakeTitle')}</b><div class=cen style="margin-top:12px"><label class="big sm2${st.busy?' off':''}" for=camr><span>${st.busy?t('sending'):'<i>📷</i>'+t('retakeBtn2')}</span></label><br><label class=lnk for=galr>${t('noCam')}</label></div></div>`:'';
- if(!x)return hd+gpsCard()+rtb+`<div class=cen><label class="big${st.busy?' off':''}" for=cam><span>${st.busy?t('sending'):'<i>📷</i>'+t('btnIn')}</span></label><p class=mu>${t('hint')}</p><label class=lnk for=gal>${t('noCam')}</label></div>`;
- cache=[x];const d=x.dm,ln=x.smode=='any'?t('planAny'):x.smode=='off'?t('planOff'):d==null?'':d>0?t('lateYou',d,x.ss):t('onTimeYou');
- return hd+gpsCard()+rtb+`<div class=card><b>${t('arrivedAt',esc(x.time))}</b>${ln?`<div class=mu>${ln}</div>`:''}${x.out?`<div class=mu>${t('leftAt',esc(x.out))}${dur(x)?'. '+t('worked',dur(x)):''}</div>`:''}${x.no?`<div class=rc>${t('rejNote')}${x.c?': '+esc(x.c):''}</div>`:''}${pics(x,0)}</div>`+
- (x.out?'':`<div class=cen><label class="big sm2${st.busy?' off':''}" for=camo><span>${st.busy?t('sending'):'<i>📷</i>'+t('btnOut')}</span></label><p class=mu>${t('outHint')}</p><label class=lnk for=galo>${t('noCam')}</label></div>`);
+ const hero=`<div class=hero><div class=hs>${fd(today())}</div><h2>${t('hello',esc(me.name.split(' ')[0]))}</h2><div class=hp>${p.m=='time'?t('planTime',rng(p)):p.m=='any'?t('planAny'):t('planOff')}</div>${ms.length?`<div class=hp>${ico('pin')} ${esc(ms.join(', '))}</div>`:''}<div class="hp dim">${t('tomorrow',tmr())}</div></div>`;
+ const rtb=rt?`<div class=card><b>${t('retakeTitle')}</b><div class=cen style="margin-top:12px">${bigBtn('camr',t('retakeBtn2'),st.busy).replace('class="big','class="big sm2')}<br><label class=lnk for=galr>${t('noCam')}</label></div></div>`:'';
+ if(!x)return hero+gpsCard()+rtb+`<div class=cen>${bigBtn('cam',t('btnIn'),st.busy)}<p class=mu>${t('hint')}</p><label class=lnk for=gal>${t('noCam')}</label></div>`;
+ cache=[x];const d=x.dm,ln=x.smode=='any'?t('planAny'):x.smode=='off'?t('planOff'):d==null?'':d>0?t('lateYou',fm(d),x.ss):t('onTimeYou');
+ return hero+gpsCard()+rtb+`<div class=card><b>${t('arrivedAt',esc(x.time))}</b>${ln?`<div class=mu>${ln}</div>`:''}${x.out?`<div class=mu>${t('leftAt',esc(x.out))}${dur(x)?'. '+t('worked',dur(x)):''}</div><div style="margin-top:8px">${balB(x)}</div>`:''}${x.no?`<div class=rc>${t('rejNote')}${x.c?': '+esc(x.c):''}</div>`:''}${pics(x,0)}</div>`+
+ (x.out?'':`<div class=cen>${bigBtn('camo',t('btnOut'),st.busy).replace('class="big','class="big sm2')}<p class=mu>${t('outHint')}</p><label class=lnk for=galo>${t('noCam')}</label></div>`);
 };
 const e1=async()=>{
  const td=(await B.all()).filter(x=>x.date==today()).sort(desc);cache=td;
  const exp=EMP.map(e=>({e,p:plan(e.id,today())})).filter(o=>o.p.m!='off'&&!td.some(x=>x.empId==o.e.id)),nm=mins(hmOf(new Date())),planned=EMP.filter(e=>plan(e.id,today()).m!='off').length;
- return `<h2>${t('todayT')}</h2><p class=mu>${fd(today())}<br>${t('summary',td.length,planned,td.filter(x=>x.dm>0).length)}</p>`+
- (td.length?td.map((x,i)=>`<div class=card><div class=row><div class=g><b>${esc(x.name)}</b>${inf(x)}</div><div class=sd>${timeB(x)}</div></div>${loc(x)}${pics(x,i)}${conf(x)}</div>`).join(''):`<div class="card mu">${t('none')}</div>`)+
- `<h3>${t('notYet')}</h3>`+(exp.length?`<div class=chips>${exp.map(o=>{const ov=o.p.m=='time'&&nm>mins(o.p.s)?nm-mins(o.p.s):0;return `<span class="chip${ov?' ov':''}">${esc(o.e.name)}${o.p.m=='time'?' ('+esc(o.p.s)+')':''}${ov?', '+t('overdue',ov):''}</span>`}).join('')}</div>`:`<div class=card>${t('allIn')}</div>`);
+ return `<h2>${t('todayT')}</h2><p class=mu>${fd(today())}</p><div class=stats><div class=stat><b>${td.length}/${planned}</b><span>${t('stArr')}</span></div><div class=stat><b>${td.filter(x=>x.dm>0).length}</b><span>${t('stLate')}</span></div><div class=stat><b>${exp.length}</b><span>${t('stMiss')}</span></div></div>`+
+ (td.length?td.map((x,i)=>`<div class=card><div class=row>${ava(x.name)}<div class=g><b>${esc(x.name)}</b>${inf(x)}</div><div class=sd>${timeB(x)}${balB(x)}</div></div>${loc(x)}${pics(x,i)}${conf(x)}</div>`).join(''):`<div class="card mu">${t('none')}</div>`)+
+ `<h3>${t('notYet')}</h3>`+(exp.length?`<div class=chips>${exp.map(o=>{const ov=o.p.m=='time'&&nm>mins(o.p.s)?nm-mins(o.p.s):0;return `<span class="chip${ov?' ov':''}">${esc(o.e.name)}${o.p.m=='time'?' ('+esc(o.p.s)+')':''}${ov?', '+t('overdue',fm(ov)):''}</span>`}).join('')}</div>`:`<div class=card>${t('allIn')}</div>`);
 };
 const h0=async()=>{
  const r=(await B.mine()).sort(desc);cache=r;
- return `<h2>${t('myHist')}</h2>`+(r.length?r.map((x,i)=>`<div class=card><div class=row><div class=g><b>${fd(x.date)}</b>${inf(x)}</div><div class=sd>${timeB(x)}${stat(x)}</div></div>${pics(x,i)}${x.no&&x.c?`<div class=rc>${esc(x.c)}</div>`:''}</div>`).join(''):`<div class="card mu">${t('noHist')}</div>`);
+ return `<h2>${t('myHist')}</h2>`+(r.length?r.map((x,i)=>`<div class=card><div class=row><div class=g><b>${fd(x.date)}</b>${inf(x)}</div><div class=sd>${timeB(x)}${balB(x)}${stat(x)}</div></div>${pics(x,i)}${x.no&&x.c?`<div class=rc>${esc(x.c)}</div>`:''}</div>`).join(''):`<div class="card mu">${t('noHist')}</div>`);
 };
 const h1=async()=>{
  const r=(await B.all()).filter(x=>(!flt.d||x.date==flt.d)&&(!flt.e||x.empId==flt.e)).sort(desc);cache=r;
  return `<h2>${t('galT')}</h2><div class=flt><input type=date id=fd value="${esc(flt.d)}" aria-label="${t('dateL')}"><select id=fe aria-label="${t('empL')}"><option value="">${t('allEmp')}</option>${EMP.map(e=>`<option value=${e.id} ${flt.e==e.id?'selected':''}>${esc(e.name)}</option>`).join('')}</select></div>`+
  `<div class=acts><button class=btn2 data-a=csv>${t('csv')}</button>${flt.d||flt.e?`<button class=lnk data-a=clr>${t('clear')}</button>`:''}</div>`+
- (r.length?`<div class=grid>${r.map((x,i)=>`<div class="card gc">${pics(x,i)}<b>${esc(x.name)}</b><div class=mu>${fd(x.date)}, ${esc(x.time)}${x.out?' – '+esc(x.out):''}</div>${timeB(x)}${loc(x)}${dur(x)?`<div class=mu>${t('worked',dur(x))}</div>`:''}${conf(x)}</div>`).join('')}</div>`:`<div class="card mu">${t('noMatch')}</div>`);
+ (r.length?`<div class=grid>${r.map((x,i)=>`<div class="card gc">${pics(x,i)}<b>${esc(x.name)}</b><div class=mu>${fd(x.date)}, ${esc(x.time)}${x.out?' – '+esc(x.out):''}</div>${timeB(x)}${balB(x)}${loc(x)}${dur(x)?`<div class=mu>${t('worked',dur(x))}</div>`:''}${conf(x)}</div>`).join('')}</div>`:`<div class="card mu">${t('noMatch')}</div>`);
 };
 V.home=()=>me.role=='employer'?e1():e0();
 V.hist=()=>me.role=='employer'?h1():h0();
-V.about=()=>`<h2>${t('aboutT')}</h2><div class=card>${t('aboutP')}</div><video class=vv controls playsinline preload=metadata poster="atvykau-poster.jpg" src="atvykau.mp4"></video><h3>${t('follow')}</h3><div class=soc><a href="https://www.facebook.com" target=_blank rel=noopener>Facebook</a><a href="https://www.instagram.com" target=_blank rel=noopener>Instagram</a><a href="https://www.linkedin.com" target=_blank rel=noopener>LinkedIn</a></div>`;
-V.prof=()=>`<h2>${t('profT')}</h2><div class=card><b>${esc(me.name)}</b><div class=mu>${t('loginName')}: ${esc(me.user)}</div><p><span class=bdg>${t(me.role)}</span></p></div><div class="card mu">${t('privacy')}</div><button class=btn data-a=out>${t('logout')}</button>`;
+const aboutBody=()=>`<h2>${t('aboutT')}</h2><div class=card>${t('aboutP')}</div><video class=vv controls playsinline preload=metadata poster="atvykau-poster.jpg" src="atvykau.mp4"></video><h3>${t('follow')}</h3><div class=soc><a href="https://www.facebook.com" target=_blank rel=noopener>Facebook</a><a href="https://www.instagram.com" target=_blank rel=noopener>Instagram</a><a href="https://www.linkedin.com" target=_blank rel=noopener>LinkedIn</a></div>`;
+V.prof=()=>`<h2>${t('profT')}</h2><div class="card row">${ava(me.name)}<div class=g><b>${esc(me.name)}</b><div class=mu>${t('loginName')}: ${esc(me.user)}</div></div><span class=bdg>${t(me.role)}</span></div><div class="card mu">${t('privacy')}</div><button class=btn data-a=out>${t('logout')}</button>`;
 
+const schedList=()=>`<h2>${t('sched')}</h2><p class=mu>${t('schedHelp')}</p>`+(EMP.length?EMP.map(e=>`<button class="card item" data-a=emp data-id="${esc(e.id)}">${ava(e.name)}<span class=g><b>${esc(e.name)}</b><span class="mu db">${esc(sum(e.id))}</span></span><span class=chev>›</span></button>`).join(''):`<div class="card mu">${t('noEmp')}</div>`);
+const mySched=()=>`<h2>${t('mySchedT')}</h2><div class=card>${calGrid(me.id,false)}<p class=mu style="margin:8px 0 0">${t('legend')}</p></div><h3>${t('next7')}</h3><div class=card>${[0,1,2,3,4,5,6].map(i=>{const {ds,p}=dayPlan(i);return `<div class=dayrow><b>${i==0?t('today'):i==1?t('tmrW'):wdn(wdOf(ds))} <span class=mu>${sdt(ds)}</span></b><span class="${p.m=='off'?'mu':''}">${esc(rng(p))}</span></div>`}).join('')}</div>`;
+V.sched=async()=>{if(!CAL)CAL=newCal();if(me.role=='employer')return st.sub=='emp'&&ED?empEd():schedList();return mySched()};
+const tmIn=(id,v,extra='')=>`<input type=time id=${id} value="${esc(v||'')}" ${extra}>`;
+const modeSel=(cur,at)=>`<select ${at}><option value=time${cur=='time'?' selected':''}>${t('mTime')}</option><option value=any${cur=='any'?' selected':''}>${t('mAny')}</option><option value=off${cur=='off'?' selected':''}>${t('mOff')}</option></select>`;
 const empEd=()=>{const e=EMP.find(x=>x.id==ED.uid),tb=ED.tab;
  const seg=[['cal','tCal'],['week','tWeek'],['sites','tSites']].map(([k,l])=>`<button class="${tb==k?'on':''}" data-a=etab data-k=${k}>${t(l)}</button>`).join('');
  let b='';
- if(tb=='cal')b=`<div class=card>${calGrid(ED.uid,true)}<p class=mu style="margin:8px 0 0">${t('calHelp')} ${t('legend')}</p><div class=acts><button class="sm ghost" data-a=cwk>${t('selWk')}</button><button class="sm ghost" data-a=call>${t('selAll')}</button><button class="sm ghost" data-a=ccl>${t('clearSel')}</button></div></div>`+(CAL.sel.length?`<div class=card><b>${t('calSel',CAL.sel.length)}</b><div class=set><select id=cmode><option value=time${CAL.mode=='time'?' selected':''}>${t('mTime')}</option><option value=any${CAL.mode=='any'?' selected':''}>${t('mAny')}</option><option value=off${CAL.mode=='off'?' selected':''}>${t('mOff')}</option></select>${CAL.mode=='time'?`<input type=time id=ctime value="${esc(CAL.time||WS)}">`:''}</div><div class=acts><button class=sm data-a=capply>${t('apply')}</button><button class="sm ghost" data-a=creset>${t('resetT')}</button></div></div>`:'');
- else if(tb=='week')b=`<div class=card><b>${t('quickT')}</b><div class=set><input type=time id=qt value="${esc(ED.q)}"><button class=sm data-a=qwk>${t('applyWk')}</button></div><button class=btn2 data-a=qany>${t('flexAll')}</button></div>
-<div class=card>${ED.days.map((d,i)=>`<div class=dayrow><b>${wdn(i+1)}</b><select data-a=dm data-i=${i}><option value=time${d.m=='time'?' selected':''}>${t('mTime')}</option><option value=any${d.m=='any'?' selected':''}>${t('mAny')}</option><option value=off${d.m=='off'?' selected':''}>${t('mOff')}</option></select>${d.m=='time'?`<input type=time data-a=dt data-i=${i} value="${esc(d.s)}">`:''}</div>`).join('')}</div><button class=btn data-a=schedSave>${t('save')}</button>`;
+ if(tb=='cal')b=`<div class=card>${calGrid(ED.uid,true)}<p class=mu style="margin:8px 0 4px">${t('calHelp')} ${t('legend')}</p><b>${t('pickDays')}</b>${wdChips(CAL.wd,'cal')}<div class=acts><button class=sm data-a=cselwd>${t('markMonth')}</button><button class="sm ghost" data-a=ccl>${t('clearSel')}</button></div></div>`+(CAL.sel.length?`<div class=card><b>${t('calSel',CAL.sel.length)}</b><div class=set>${modeSel(CAL.mode,'id=cmode')}</div>${CAL.mode=='time'?`<div class=set><label class=tl>${t('startL')}${tmIn('ctime',CAL.time||WS)}</label><label class=tl>${t('endL')}${tmIn('cend',CAL.end)}</label></div>`:''}<div class=acts><button class=sm data-a=capply>${t('apply')}</button><button class="sm ghost" data-a=creset>${t('resetT')}</button></div></div>`:'');
+ else if(tb=='week')b=`<div class=card><b>${t('quickT')}</b>${wdChips(ED.qd,'week')}<div class=set><label class=tl>${t('startL')}${tmIn('qt',ED.q)}</label><label class=tl>${t('endL')}${tmIn('qe',ED.qe)}</label></div><label class=chk><input type=checkbox id=qr${ED.rest?' checked':''}> ${t('restOff')}</label><div class=acts><button class=sm data-a=qwk>${t('apply')}</button><button class="sm ghost" data-a=qany>${t('flexAll')}</button></div></div>
+<div class=card>${ED.days.map((d,i)=>`<div class=dayrow><b>${wdn(i+1)}</b>${modeSel(d.m,`data-a=dm data-i=${i}`)}</div>${d.m=='time'?`<div class="set tm"><label class=tl>${t('startL')}<input type=time data-a=dt data-i=${i} value="${esc(d.s)}"></label><label class=tl>${t('endL')}<input type=time data-a=de data-i=${i} value="${esc(d.e)}"></label></div>`:''}`).join('')}</div><button class=btn data-a=schedSave>${t('save')}</button>`;
  else b=`<div class=card><b>${t('sitesFor')}</b>${SITES.length?SITES.map(s=>`<label class=chk><input type=checkbox data-a=ds data-id="${esc(s.id)}"${ED.sites.includes(s.id)?' checked':''}> ${esc(s.name)}</label>`).join(''):`<div class=mu>${t('noSites')}</div>`}</div><button class=btn data-a=sitesSave>${t('save')}</button>`;
- return `<button class=lnk data-a=back>${t('back')}</button><h2>${esc(e?e.name:'')}</h2><div class=seg>${seg}</div>`+b};
+ return `<button class=lnk data-a=back>${t('back')}</button><div class=row style="margin:4px 0 8px">${ava(e?e.name:'?')}<h2 style="margin:0">${esc(e?e.name:'')}</h2></div><div class=seg>${seg}</div>`+b};
 const siteEd=()=>`<button class=lnk data-a=back>${t('back')}</button><h2>${t('sitesT')}</h2>
 <div class=card><label>${t('siteName')}<input id=sn value="${esc(SE.name)}"></label><div class=mu style="margin-top:12px">${t('geoSearch')}</div><div class=set><input id=gq placeholder="Gedimino pr. 1, Vilnius"><button class=sm data-a=geo>${t('geoBtn')}</button></div></div>
 <p class=mu>${t('mapHint')}</p><div class=mapwrap><div id=map class=map></div><div class=pin></div></div>
 <div class=card><div class=row><button class=btn2 style="margin:0" data-a=useLoc>${t('useLoc')}</button><span class="mu g" id=ct style="text-align:right">${(+SE.lat).toFixed(5)}, ${(+SE.lng).toFixed(5)}</span></div><label>${t('radius')}: <b id=srv>${Math.round(SE.r)} m</b><input id=sr type=range min=20 max=1000 step=10 value="${Math.min(1000,Math.round(SE.r))}"></label></div>
 <button class=btn data-a=siteSave>${t('save')}</button>${SE.id?`<button class="btn2 rj" data-a=siteDel>${t('delT')}</button>`:''}`;
 V.set=async()=>{
- if(!CAL)CAL=newCal();
- if(st.sub=='emp'&&ED)return empEd();
  if(st.sub=='site'&&SE)return siteEd();
+ if(st.sub=='about')return `<button class=lnk data-a=back>${t('back')}</button>`+aboutBody();
  const th=(k,l)=>`<button class="btn2${theme==k?' sel':''}" data-a=theme data-v=${k}>${t(l)}</button>`;
  let h=`<h2>${t('setT')}</h2><div class=card><b>${t('theme')}</b><div>${th('auto','thAuto')}${th('light','thLight')}${th('dark','thDark')}</div></div>`;
- if(me.role=='employer')h+=`<div class=card><b>${t('defStart')}</b><div class=mu>${t('defHelp')}</div><div class=set><input type=time id=wsv value="${esc(WS)}"><button class=sm data-a=ws>${t('save')}</button></div></div>
+ if(me.role=='employer')h+=`<div class=card><b>${t('defHours')}</b><div class=mu>${t('defHelp2')}</div><div class=set><label class=tl>${t('startL')}${tmIn('wsv',WS)}</label><label class=tl>${t('endL')}${tmIn('wev',WE)}</label><button class=sm data-a=ws>${t('save')}</button></div></div>
 <div class=card><div class=row><div class=g><b>${t('strictT')}</b><div class=mu>${t('strictH')}</div></div><button class="sm${STRICT?'':' ghost2'}" data-a=strict>${STRICT?t('on'):t('off')}</button></div></div>
-<h3>${t('sitesT')}</h3>`+(SITES.length?SITES.map(s=>`<div class="card row"><div class=g><b>${esc(s.name)}</b><div class=mu>${(+s.lat).toFixed(5)}, ${(+s.lng).toFixed(5)}, ${+s.radius_m} m</div></div><button class=sm data-a=siteEdit data-id="${esc(s.id)}">✎</button></div>`).join(''):`<div class="card mu">${t('noSites')}</div>`)+`<button class=btn2 data-a=siteNew>${t('addSite')}</button><h3>${t('schedT')}</h3>`+EMP.map(e=>`<div class="card row"><div class=g><b>${esc(e.name)}</b><div class=mu>${esc(sum(e.id))}</div></div><button class=sm data-a=emp data-id="${esc(e.id)}">✎</button></div>`).join('');
- else h+=`<h3>${t('myPlan')}</h3><div class=card>${calGrid(me.id,false)}<p class=mu style="margin:8px 0 0">${t('legend')}</p></div>`;
+<h3>${t('sitesT')}</h3>`+(SITES.length?SITES.map(s=>`<div class="card row"><span class=ava style="background:var(--pr)">${ico('pin').replace('width=24 height=24','width=20 height=20')}</span><div class=g><b>${esc(s.name)}</b><div class=mu>${(+s.lat).toFixed(5)}, ${(+s.lng).toFixed(5)}, ${+s.radius_m} m</div></div><button class=sm data-a=siteEdit data-id="${esc(s.id)}">✎</button></div>`).join(''):`<div class="card mu">${t('noSites')}</div>`)+`<button class=btn2 data-a=siteNew>${t('addSite')}</button>`;
+ h+=`<button class="card item" data-a=aboutOpen style="margin-top:14px"><span class=g><b>${t('about')}</b></span><span class=chev>›</span></button>`;
  return h};
 async function loadData(){
  const from=new Date(Date.now()-40*864e5).toISOString().slice(0,10);
  const [a,b,c,d,e]=await Promise.all([sb.from('sites').select('*').order('name'),sb.from('schedules').select('*'),sb.from('employee_sites').select('*'),sb.from('settings').select('*').eq('id',1).maybeSingle(),sb.from('schedule_days').select('*').gte('day',from)]);
  OV={};(e.data||[]).forEach(r=>{(OV[r.user_id]=OV[r.user_id]||{})[r.day]=r});
  SITES=a.data||[];SCH={};(b.data||[]).forEach(r=>(SCH[r.user_id]=SCH[r.user_id]||[]).push(r));ES={};(c.data||[]).forEach(r=>(ES[r.user_id]=ES[r.user_id]||[]).push(r.site_id));
- if(d.data){if(d.data.work_start)WS=String(d.data.work_start).slice(0,5);STRICT=!!d.data.strict_gps}
+ if(d.data){if(d.data.work_start)WS=hh(d.data.work_start);WE=hh(d.data.work_end);STRICT=!!d.data.strict_gps}
 }
 function csv(){
  const q=v=>{let s=String(v==null?'':v);if(/^[=+\-@]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'};
- const rows=[[t('dateL'),t('empL'),t('cArr'),t('cOut'),t('cMin'),t('cDelta'),t('cSite'),t('cDist'),t('cStatus'),t('cComment')]].concat(cache.map(x=>{const m=mins(x.out)-mins(x.time);return[x.date,x.name,x.time,x.out,m>0?m:'',x.smode=='time'?x.dm:'',x.site,x.dist,x.rt?'retake':x.ok?'confirmed':x.no?'rejected':'pending',x.c]}));
+ const rows=[[t('dateL'),t('empL'),t('cArr'),t('cOut'),t('cMin'),t('cStart'),t('cEnd'),t('cDelta'),t('cBal'),t('cSite'),t('cDist'),t('cStatus'),t('cComment')]].concat(cache.map(x=>{const m=mins(x.out)-mins(x.time),b=bal(x);return[x.date,x.name,x.time,x.out,m>0?m:'',x.ss,x.se,x.smode=='time'?x.dm:'',b==null?'':b,x.site,x.dist,x.rt?'retake':x.ok?'confirmed':x.no?'rejected':'pending',x.c]}));
  const b=new Blob(['\ufeff'+rows.map(r=>r.map(q).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');
  a.href=URL.createObjectURL(b);a.download='atvykau-'+today()+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
 }
+const topBar=()=>`<div class=top><span class=who>${ava(me.name)}<span><b>${esc(me.name)}</b><small>${t('r_'+me.role)}</small></span></span><div class=tr>${langB()}<button class=gear data-a=gear aria-label="${t('setT')}">${ico('set')}</button></div></div>`;
 async function render(){
  const n=++seq,m=$('#m'),nav=$('#n');
  document.documentElement.lang=lang=='lt'?'lt':'en-GB';
- if(!me){nav.innerHTML='';m.innerHTML=`<div class=top><span></span>${langB()}</div>`+V.login();$('#lb').innerHTML='';return}
- nav.innerHTML=[['home','🏠'],['hist','🕘'],['about','ℹ️'],['prof','👤']].map(([k,i])=>`<button data-a=tab data-t=${k} class="${tab==k?'on':''}"><span>${i}</span>${t(k)}</button>`).join('');
+ if(!me){nav.innerHTML='';m.innerHTML=`<div class=top><span></span>${langB()}</div>`+V.login();$('#lb').innerHTML='';lastKey='';return}
+ nav.innerHTML=['home','hist','sched','prof'].map(k=>`<button data-a=tab data-t=${k} class="${tab==k?'on':''}">${ico(k)}<span>${t(k)}</span></button>`).join('');
+ const key=tab+'|'+st.sub,fresh=key!=lastKey;
+ if(fresh){m.innerHTML=topBar()+'<div class=spin></div>';m.scrollTop=0;lastKey=key}
  let h;try{h=await V[tab]()}catch{h=`<div class=er>${t('loadFail')}</div>`}
  if(n!=seq)return;
- m.innerHTML=`<div class=top><span class=who>👤 ${esc(me.name)}, ${t('r_'+me.role)}</span><div class=tr>${langB()}<button class=gear data-a=gear aria-label="${t('setT')}">⚙️</button></div></div>`+(st.msg?`<div class=ok>${esc(st.msg)}</div>`:'')+(st.err?`<div class=er>${esc(st.err)}</div>`:'')+h;
+ m.innerHTML=topBar()+`<div${fresh?' class=fade':''}>${h}</div>`;
+ if(st.msg){toast('ok',st.msg);st.msg=''}if(st.err){toast('er',st.err);st.err=''}
  $('#lb').innerHTML=st.lb?`<div class=lbx data-a=lbx><img src="${st.lb}" alt=""></div>`:'';
  if(tab=='set'&&st.sub=='site'&&SE)initMap();else if(MAP){MAP.remove();MAP=null}
 }
@@ -313,12 +411,11 @@ async function start(u){
  tab='home';st.err=st.msg='';render();
  if(me.role=='employee')gpsInit().then(()=>{if(GPS!='granted')askGps()});
 }
-const nowHM=()=>hmOf(new Date());
 async function doIn(f){
  st.busy=1;st.err=st.msg='';render();
  try{
   if((await B.mine()).some(x=>x.date==today()))st.err=t('dup');
-  else{const pos=await getPos(),path=await up(f,'in-');await B.add(path,pos);const x=(await B.mine()).find(r=>r.date==today()),d=x&&x.dm;st.msg=t('okIn')+(d>0?' '+t('lateYou',d,x.ss):'')+(pos?'':t('noGpsNote'))}
+  else{const pos=await getPos(),path=await up(f,'in-');await B.add(path,pos);const x=(await B.mine()).find(r=>r.date==today()),d=x&&x.dm;st.msg=t('okIn')+(d>0?' '+t('lateYou',fm(d),x.ss):'')+(pos?'':t('noGpsNote'))}
  }catch(e){st.err=em(e,'saveFail')}
  st.busy=0;render();
 }
@@ -334,6 +431,7 @@ async function doRetake(f){
  catch(e){st.err=em(e,'retakeFail')}
  st.busy=0;render();
 }
+const TM=/^\d\d:\d\d$/;
 document.addEventListener('click',async e=>{
  const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a;
  if(a=='tab'){tab=b.dataset.t;st.sub='';ED=null;SE=null;st.msg=st.err='';render()}
@@ -344,14 +442,16 @@ document.addEventListener('click',async e=>{
  else if(a=='rj'){st.err=st.msg='';st.rej=b.dataset.id;render()}
  else if(a=='rjno'){st.rej='';render()}
  else if(a=='rjgo'){const c=($('#rcm').value||'').trim();if(!c){st.err=t('needC');return render()}try{await B.decide(b.dataset.id,{no:1,c});st.rej='';st.err=''}catch{st.err=t('rejFail')}render()}
- else if(a=='ws'){const v=$('#wsv').value;if(!/^\d\d:\d\d$/.test(v))return;try{const r=await sb.rpc('set_work_start',{p_start:v});if(r.error)throw r.error;WS=v;st.err='';st.msg=t('wsOk')}catch{st.msg='';st.err=t('wsFail')}render()}
- else if(a=='gear'){tab='set';st.sub='';ED=null;SE=null;CAL=newCal();st.msg=st.err='';render()}
+ else if(a=='ws'){const s=$('#wsv').value,en=$('#wev').value;if(!TM.test(s))return;try{const r=await sb.rpc('set_work_hours',{p_start:s,p_end:TM.test(en)?en:null});if(r.error)throw r.error;WS=s;WE=TM.test(en)?en:'';st.err='';st.msg=t('wsOk')}catch{st.msg='';st.err=t('wsFail')}render()}
+ else if(a=='gear'){tab='set';st.sub='';ED=null;SE=null;st.msg=st.err='';render()}
+ else if(a=='aboutOpen'){st.sub='about';render()}
  else if(a=='back'){st.sub='';ED=null;SE=null;st.err='';render()}
  else if(a=='theme'){theme=b.dataset.v;lsSet('atv_theme',theme);applyTheme();render()}
  else if(a=='strict'){try{const r=await sb.rpc('set_strict_gps',{p:!STRICT});if(r.error)throw r.error;STRICT=!STRICT;st.err=''}catch{st.err=t('saveFail')}render()}
  else if(a=='rt'){b.disabled=true;try{await B.askRetake(b.dataset.id);st.err=''}catch{st.err=t('rtFail')}render()}
  else if(a=='csv')csv();
-else if(a=='gps'){await askGps()}
+ else if(a=='gps'){await askGps()}
+ else if(a=='ghow'){st.gh=st.gh?0:1;render()}
  else if(a=='siteNew'){SE={id:'',name:'',lat:54.6872,lng:25.2797,z:13,r:150};st.sub='site';st.err=st.msg='';render();getPos().then(p=>{if(p&&MAP&&SE&&!SE.id&&!SE.moved)MAP.setView([p.lat,p.lng],17)})}
  else if(a=='siteEdit'){const s=SITES.find(x=>x.id==b.dataset.id);if(s){SE={id:s.id,name:s.name,lat:+s.lat,lng:+s.lng,z:17,r:+s.radius_m};st.sub='site';st.err=st.msg='';render()}}
  else if(a=='useLoc'){const p=await getPos();if(p&&MAP)MAP.setView([p.lat,p.lng],18);else{SE.name=$('#sn').value;st.err=t('locFail');render()}}
@@ -360,18 +460,20 @@ else if(a=='gps'){await askGps()}
   const row={name:SE.name,lat:+SE.lat.toFixed(6),lng:+SE.lng.toFixed(6),radius_m:Math.max(20,Math.min(5000,Math.round(SE.r)||150))};
   try{const x=await (SE.id?sb.from('sites').update(row).eq('id',SE.id):sb.from('sites').insert(row));if(x.error)throw x.error;await loadData();SE=null;st.sub='';st.err='';st.msg=t('siteSaved')}catch{st.err=t('saveFail')}render()}
  else if(a=='siteDel'){try{const x=await sb.from('sites').delete().eq('id',SE.id);if(x.error)throw x.error;await loadData();SE=null;st.sub='';st.err=''}catch{st.err=t('saveFail')}render()}
- else if(a=='emp'){const u=b.dataset.id;ED={uid:u,tab:'cal',q:WS,days:[1,2,3,4,5,6,7].map(w=>{const p=planW(u,w);return{m:p.m,s:p.s}}),sites:[...(ES[u]||[])]};CAL=newCal();st.sub='emp';st.err=st.msg='';render()}
+ else if(a=='emp'){const u=b.dataset.id;ED={uid:u,tab:'cal',qd:[1,2,3,4,5],q:WS,qe:WE,rest:1,days:[1,2,3,4,5,6,7].map(w=>{const p=planW(u,w);return{m:p.m,s:p.s,e:p.e}}),sites:[...(ES[u]||[])]};CAL=newCal();st.sub='emp';st.err=st.msg='';render()}
  else if(a=='etab'){ED.tab=b.dataset.k;st.err=st.msg='';render()}
- else if(a=='qwk'){ED.days=ED.days.map((d,i)=>i<5?{m:'time',s:ED.q||WS}:{m:'off',s:''});render()}
- else if(a=='qany'){ED.days=ED.days.map(()=>({m:'any',s:''}));render()}
- else if(a=='schedSave'){try{const rows=ED.days.map((d,i)=>({user_id:ED.uid,weekday:i+1,mode:d.m,start_time:d.m=='time'?(d.s||WS):null}));const r=await sb.from('schedules').upsert(rows,{onConflict:'user_id,weekday'});if(r.error)throw r.error;await loadData();st.err='';st.msg=t('schedSaved')}catch{st.err=t('saveFail')}render()}
+ else if(a=='wdt'){const arr=b.dataset.c=='cal'?CAL.wd:ED.qd,w=+b.dataset.w,i=arr.indexOf(w);if(i<0)arr.push(w);else arr.splice(i,1);render()}
+ else if(a=='wdp'){const arr=b.dataset.c=='cal'?CAL.wd:ED.qd;arr.length=0;arr.push(...{wk:[1,2,3,4,5],all:[1,2,3,4,5,6,7],we:[6,7]}[b.dataset.p]);render()}
+ else if(a=='qwk'){ED.days=ED.days.map((d,i)=>ED.qd.includes(i+1)?{m:'time',s:ED.q||WS,e:ED.qe||''}:(ED.rest?{m:'off',s:'',e:''}:d));render()}
+ else if(a=='qany'){ED.days=ED.days.map(()=>({m:'any',s:'',e:''}));render()}
+ else if(a=='schedSave'){try{const rows=ED.days.map((d,i)=>({user_id:ED.uid,weekday:i+1,mode:d.m,start_time:d.m=='time'?(d.s||WS):null,end_time:d.m=='time'&&d.e?d.e:null}));const r=await sb.from('schedules').upsert(rows,{onConflict:'user_id,weekday'});if(r.error)throw r.error;await loadData();st.err='';st.msg=t('schedSaved')}catch{st.err=t('saveFail')}render()}
  else if(a=='sitesSave'){try{let r=await sb.from('employee_sites').delete().eq('user_id',ED.uid);if(r.error)throw r.error;if(ED.sites.length){r=await sb.from('employee_sites').insert(ED.sites.map(s=>({user_id:ED.uid,site_id:s})));if(r.error)throw r.error}await loadData();st.err='';st.msg=t('schedSaved')}catch{st.err=t('saveFail')}render()}
  else if(a=='cm'){CAL.m+=+b.dataset.d;if(CAL.m<0){CAL.m=11;CAL.y--}else if(CAL.m>11){CAL.m=0;CAL.y++}CAL.sel=[];render()}
  else if(a=='cday'){const ds=b.dataset.d,i=CAL.sel.indexOf(ds);if(i<0)CAL.sel.push(ds);else CAL.sel.splice(i,1);render()}
  else if(a=='cwd'){const w=+b.dataset.w,ds=monthDays(CAL.y,CAL.m).filter(x=>x>=today()&&wdOf(x)==w),all=ds.length&&ds.every(x=>CAL.sel.includes(x));CAL.sel=all?CAL.sel.filter(x=>!ds.includes(x)):[...new Set([...CAL.sel,...ds])];render()}
- else if(a=='cwk'||a=='call'){CAL.sel=monthDays(CAL.y,CAL.m).filter(x=>x>=today()&&(a=='call'||wdOf(x)<=5));render()}
+ else if(a=='cselwd'){CAL.sel=monthDays(CAL.y,CAL.m).filter(x=>x>=today()&&CAL.wd.includes(wdOf(x)));render()}
  else if(a=='ccl'){CAL.sel=[];render()}
- else if(a=='capply'){try{const rows=CAL.sel.map(ds=>({user_id:ED.uid,day:ds,mode:CAL.mode,start_time:CAL.mode=='time'?(CAL.time||WS):null})),r=await sb.from('schedule_days').upsert(rows,{onConflict:'user_id,day'});if(r.error)throw r.error;await loadData();CAL.sel=[];st.err='';st.msg=t('calSaved')}catch{st.err=t('saveFail')}render()}
+ else if(a=='capply'){try{const rows=CAL.sel.map(ds=>({user_id:ED.uid,day:ds,mode:CAL.mode,start_time:CAL.mode=='time'?(CAL.time||WS):null,end_time:CAL.mode=='time'&&CAL.end?CAL.end:null})),r=await sb.from('schedule_days').upsert(rows,{onConflict:'user_id,day'});if(r.error)throw r.error;await loadData();CAL.sel=[];st.err='';st.msg=t('calSaved')}catch{st.err=t('saveFail')}render()}
  else if(a=='creset'){try{const r=await sb.from('schedule_days').delete().eq('user_id',ED.uid).in('day',CAL.sel);if(r.error)throw r.error;await loadData();CAL.sel=[];st.err='';st.msg=t('calSaved')}catch{st.err=t('saveFail')}render()}
  else if(a=='out'){await sb.auth.signOut();me=null;EMP=[];tab='home';st.err=st.msg='';render()}
  else if(a=='clr'){flt={d:'',e:''};render()}
@@ -381,10 +483,11 @@ document.addEventListener('change',e=>{const x=e.target,i=x.id,a=x.dataset.a,n=+
  if(i=='fd'){flt.d=x.value;render()}else if(i=='fe'){flt.e=x.value;render()}
  else if(a=='dm'){ED.days[n].m=x.value;if(x.value=='time'&&!ED.days[n].s)ED.days[n].s=WS;render()}
  else if(a=='dt'){ED.days[n].s=x.value}
+ else if(a=='de'){ED.days[n].e=x.value}
  else if(a=='ds'){const id=x.dataset.id;ED.sites=x.checked?[...new Set([...ED.sites,id])]:ED.sites.filter(s=>s!=id)}
- else if(i=='qt'){ED.q=x.value}
+ else if(i=='qt'){ED.q=x.value}else if(i=='qe'){ED.qe=x.value}else if(i=='qr'){ED.rest=x.checked?1:0}
  else if(i=='cmode'){CAL.mode=x.value;render()}
- else if(i=='ctime'){CAL.time=x.value}
+ else if(i=='ctime'){CAL.time=x.value}else if(i=='cend'){CAL.end=x.value}
 });
 [['cam',doIn],['gal',doIn],['camo',doOut],['galo',doOut],['camr',doRetake],['galr',doRetake]].forEach(([id,fn])=>$('#'+id).addEventListener('change',e=>{const f=e.target.files[0];e.target.value='';if(f&&!st.busy)fn(f)}));
 document.addEventListener('input',e=>{if(e.target.id=='sr'&&SE){SE.r=+e.target.value;const v=$('#srv');if(v)v.textContent=SE.r+' m';if(MAPC)MAPC.setRadius(SE.r)}});
