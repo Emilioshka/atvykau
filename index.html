@@ -126,8 +126,23 @@ label.big.sm2{background:var(--tx);color:var(--bg);animation:none}.sm2 svg{width
 .dayrow select{min-width:120px}
 .sm.ghost{background:var(--bd);color:var(--tx)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+:root{padding-top:0;padding-bottom:0}
+html,body{height:100%;overflow:hidden;overscroll-behavior:none}
+body{position:fixed;inset:0;width:100%;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);touch-action:pan-y}
+#top{flex:none;padding:10px 16px 2px;background:var(--bg);position:relative;z-index:3}
+#top .top{margin:0}
+main{overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;padding-top:10px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.gc{min-width:0;overflow:hidden}.gc .bdg{white-space:normal}.gc b,.gc .mu{overflow-wrap:anywhere}
+.cal{grid-template-columns:repeat(7,minmax(0,1fr))}
+.stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+img,video{max-width:100%}
+.item .g{min-width:0}
+.bt{font-size:46px;font-weight:800;text-align:center;font-variant-numeric:tabular-nums;margin:6px 0 4px}.bt.over{color:var(--ert)}
+.brk .btn{margin-top:10px}.btn:disabled{opacity:.5}
 </style></head>
-<body><div id="app"><main id="m"></main><nav id="n"></nav></div><div id="lb"></div>
+<body><div id="app"><header id="top"></header><main id="m"></main><nav id="n"></nav></div><div id="lb"></div>
 <div id="toast"></div>
 <input type="file" id="cam" accept="image/*" capture="environment" class="vh">
 <input type="file" id="gal" accept="image/*" class="vh">
@@ -190,13 +205,30 @@ geoSearch:'Ieškoti adreso',geoBtn:'Ieškoti',notFound:'Adresas nerastas.',mapHi
 Object.assign(I.en,{tCal:'Calendar',tWeek:'Weekly pattern',tSites:'Sites',calHelp:'Tap days (or a weekday name), set the time, then press “Apply”.',legend:'Outlined days have an individual change.',calSel:'Days selected: {0}',apply:'Apply',resetT:'Reset to weekly pattern',clearSel:'Clear',selWk:'Mon–Fri',selAll:'All days',calSaved:'Schedule updated.',tomorrow:'Tomorrow: {0}.',anyS:'any',
 gpsOn:'GPS is on',gpsT:'Turn on GPS',gpsOff:'GPS is off. Your employer cannot see your location.',gpsAllow:'Allow GPS',gpsHow:'How to turn it on',gpsIos:'iPhone: Settings → Privacy & Security → Location Services (turn on), then Safari Websites → “While Using”.',gpsAnd:'Android: Chrome → ⋮ → Settings → Site settings → Location → allow for this site.',gpsUnavail:'Could not determine your location. Move to an open area and try again.',gpsPrompt:'The app needs permission to see your location. Tap “Allow GPS”.',noGpsNote:' Location was not recorded because GPS is off.',
 geoSearch:'Search address',geoBtn:'Search',notFound:'Address not found.',mapHint:'Move the map so the pin marks the site location.',mapFail:'The map could not load. Check your connection.',badSite:'Enter a site name.'});
+Object.assign(I.lt,{brkT:'Pertraukos',brkFlex:'Lanksčiai (bet kada)',brkWin:'Tik nustatytu laiku',brkFrom:'Nuo',brkTo:'Iki',brkMin:'Trukmė (min.)',brkPaidL:'Apmokėjimas',brkPaid:'Apmokama',brkUnpaid:'Neapmokama',brkSaved:'Pertraukų nustatymai išsaugoti.',brkFail:'Nepavyko išsaugoti pertraukų nustatymų.',brkBadWin:'Nurodykite teisingą pertraukos laiką.',
+brkHelpFlex:'Darbuotojas gali pasiimti pertrauką bet kada darbo metu (iki nustatytos trukmės).',brkHelpWin:'Darbuotojas gali pradėti pertrauką tik tarp nustatytų valandų.',
+brkStart:'Pradėti pertrauką',brkEnd:'Baigti pertrauką',brkNow:'Pertrauka vyksta',brkLeft:'Liko pertraukos: {0}',brkWinTxt:'Galima {0}–{1}.',brkUsed:'Pertraukos laikas išnaudotas.',brkStarted:'Pertrauka pradėta.',brkEnded:'Pertrauka baigta.',
+brkErrWin:'Dabar ne pertraukos laikas. Galima {0}–{1}.',brkErrUsed:'Pertrauka jau išnaudota.',brkFailG:'Nepavyko pakeisti pertraukos būsenos.',brkTaken:'Pertrauka {0}',brkOver:'viršyta {0}',brkOnNow:'Pertraukoje',cBrk:'Pertrauka (min.)',
+ntT:'Pranešimai',ntHelp:'Primename atvykti, baigti pertrauką ir pažymėti išvykimą.',ntEnable:'Įjungti pranešimus',ntDisable:'Išjungti pranešimus',ntTest:'Siųsti bandomąjį',ntTestSent:'Bandomasis pranešimas išsiųstas. Jis turėtų atkeliauti per ~1 min.',
+ntIosHint:'iPhone: pridėkite programėlę į pradžios ekraną (Dalintis → Pridėti į pradžios ekraną) ir atidarykite iš ten.',ntDenied:'Pranešimai užblokuoti. Leiskite juos telefono nustatymuose.',ntUnsupported:'Ši naršyklė pranešimų nepalaiko.',ntNoCfg:'Pranešimų raktas neįrašytas config.js faile.',ntSaved:'Pranešimai įjungti.',ntOffDone:'Pranešimai išjungti.',ntFail:'Nepavyko įjungti pranešimų',
+nPre:'Prieš darbo pradžią',nLate:'Jei dar nepažymėjau atvykimo',nPreEnd:'Prieš darbo pabaigą',nForgot:'Jei pamiršau pažymėti išvykimą',nPreBrk:'Prieš pertrauką',nBrkEnd:'Kai pertrauka baigiasi',nRetake:'Darbdavio prašymai (nauja nuotrauka, atmetimas)',nEmpLate:'Kai darbuotojas vėluoja',lead:'Priminti prieš darbą (min.)',
+offline:'Nėra interneto ryšio',online:'Ryšys atsistatė',gpsStill:'GPS vis dar išjungtas. Patikrinkite telefono nustatymus.'});
+Object.assign(I.en,{brkT:'Breaks',brkFlex:'Flexible (any time)',brkWin:'Only at set times',brkFrom:'From',brkTo:'Until',brkMin:'Length (min)',brkPaidL:'Pay',brkPaid:'Paid',brkUnpaid:'Unpaid',brkSaved:'Break settings saved.',brkFail:'Could not save break settings.',brkBadWin:'Enter a valid break window.',
+brkHelpFlex:'Employees can take a break any time during work (up to the set length).',brkHelpWin:'Employees can start a break only between the set hours.',
+brkStart:'Start break',brkEnd:'End break',brkNow:'Break in progress',brkLeft:'Break time left: {0}',brkWinTxt:'Allowed {0}–{1}.',brkUsed:'Break time used up.',brkStarted:'Break started.',brkEnded:'Break ended.',
+brkErrWin:'It is not break time. Allowed {0}–{1}.',brkErrUsed:'Break time is already used up.',brkFailG:'Could not change break status.',brkTaken:'Break {0}',brkOver:'over by {0}',brkOnNow:'On break',cBrk:'Break (min)',
+ntT:'Notifications',ntHelp:'Reminders to check in, end breaks and check out.',ntEnable:'Turn on notifications',ntDisable:'Turn off notifications',ntTest:'Send a test',ntTestSent:'Test queued. It should arrive within about a minute.',
+ntIosHint:'iPhone: add the app to your Home Screen (Share → Add to Home Screen) and open it from there.',ntDenied:'Notifications are blocked. Allow them in your phone settings.',ntUnsupported:'This browser does not support notifications.',ntNoCfg:'The notification key is missing from config.js.',ntSaved:'Notifications are on.',ntOffDone:'Notifications are off.',ntFail:'Could not turn on notifications',
+nPre:'Before work starts',nLate:'If I have not checked in',nPreEnd:'Before work ends',nForgot:'If I forgot to check out',nPreBrk:'Before a break',nBrkEnd:'When a break is ending',nRetake:'Employer requests (new photo, rejection)',nEmpLate:'When an employee is late',lead:'Remind before work (min)',
+offline:'No internet connection',online:'Back online',gpsStill:'GPS is still off. Check your phone settings.'});
 const $=s=>document.querySelector(s);
+const VK=typeof VAPID_PUBLIC_KEY!='undefined'?VAPID_PUBLIC_KEY:'';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const lsGet=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
 const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 let me=null,tab='home',flt={d:'',e:''},cache=[],seq=0,EMP=[],WS='08:00',WE='',lang=lsGet('atv_lang','lt')=='en'?'en':'lt';
-let SITES=[],SCH={},ES={},STRICT=false,theme=lsGet('atv_theme','auto'),ED=null,SE=null,OV={},CAL=null,MAP=null,MAPC=null,GPS='unknown',GPSERR=0;
+let SITES=[],SCH={},ES={},STRICT=false,theme=lsGet('atv_theme','auto'),ED=null,SE=null,OV={},CAL=null,MAP=null,MAPC=null,GPS='unknown',GPSERR=0,RECHK=0,BRK={on:false,mode:'flex',start:'',end:'',min:30,paid:false},NP={perm:'default',sub:false,prefs:null,ok:false};
 const st={busy:0,err:'',msg:'',lb:'',rej:'',sub:'',gh:0};
 const t=(k,...a)=>String(I[lang][k]??I.lt[k]??k).replace(/\{(\d)\}/g,(_,i)=>a[i]);
 const norm=s=>String(s).normalize('NFD').replace(/\p{M}/gu,'').toLowerCase().trim().replace(/\s+/g,'.');
@@ -233,8 +265,23 @@ const plan=(uid,ds)=>{const o=OV[uid]&&OV[uid][ds];return o?{m:o.mode,s:hh(o.sta
 const rng=p=>p.m=='time'?p.s+(p.e?'–'+p.e:''):p.m=='any'?t('mAny'):t('mOff');
 const sum=uid=>{if(!(SCH[uid]||[]).length)return t('defSched',WS+(WE?'–'+WE:''));const p=[1,2,3,4,5,6,7].map(w=>planW(uid,w));if(p.every(x=>x.m=='any'))return t('flexSched');const wk=p.slice(0,5);if(wk.every(x=>x.m=='time'&&x.s==wk[0].s&&x.e==wk[0].e)&&p[5].m=='off'&&p[6].m=='off')return t('sumWk',rng(wk[0]));return t('sumVar')};
 const fm=n=>{n=Math.round(Math.abs(n));const h=Math.floor(n/60),m=n%60;return h&&m?t('hm',h,m):h?t('hOnly',h):t('mOnly',m)};
-const dur=x=>{const m=mins(x.out)-mins(x.time);return m>0?fm(m):''};
-const bal=x=>{if(x.smode!='time'||!x.ss||!x.se||!x.out)return null;const w=mins(x.out)-mins(x.time),p=mins(x.se)-mins(x.ss);return w>0&&p>0?w-p:null};
+const brkTaken=x=>Math.round((x.br||[]).reduce((a,b)=>a+(b.e?(new Date(b.e)-new Date(b.s))/6e4:0),0));
+const brkOpen=x=>(x.br||[]).find(b=>!b.e);
+const wmin=x=>{const m=mins(x.out)-mins(x.time);return m>0?m-(x.bp===false?brkTaken(x):0):0};
+const dur=x=>{const m=wmin(x);return m>0?fm(m):''};
+const bal=x=>{if(x.smode!='time'||!x.ss||!x.se||!x.out)return null;const w=wmin(x),p=mins(x.se)-mins(x.ss)-(x.bp===false?(x.ba||0):0);return w>0&&p>0?w-p:null};
+const tickBrk=()=>{const e=$('#btimer');if(!e)return;const r=Math.round((+e.dataset.end-Date.now())/1000),a=Math.abs(r);e.textContent=(r<0?'+':'')+p2(Math.floor(a/60))+':'+p2(a%60);e.className='bt'+(r<0?' over':'')};
+setInterval(()=>tickBrk(),1000);
+const brkCard=x=>{
+ if(!BRK.on&&x.ba==null)return '';
+ const taken=brkTaken(x),open=brkOpen(x),allow=x.ba||BRK.min,left=allow-taken;
+ if(open)return `<div class="card brk"><b>${t('brkNow')}</b><div class=bt id=btimer data-end="${new Date(open.s).getTime()+left*6e4}">--:--</div><button class=btn data-a=be>${t('brkEnd')}</button></div>`;
+ if(!BRK.on)return '';
+ const win=BRK.mode=='window',nm=mins(hmOf(new Date())),inWin=!win||(nm>=mins(BRK.start)&&nm<=mins(BRK.end));
+ if(left<=0)return `<div class="card brk"><b>${t('brkT')}</b><div class=mu>${t('brkUsed')}</div></div>`;
+ return `<div class="card brk"><b>${t('brkT')}</b><div class=mu>${t('brkLeft',fm(left))}${win?' '+t('brkWinTxt',esc(BRK.start),esc(BRK.end)):''}</div><button class=btn data-a=bs${inWin?'':' disabled'}>${t('brkStart')}</button></div>`};
+const brkSettings=()=>`<div class=card><div class=row><div class=g><b>${t('brkT')}</b><div class=mu>${BRK.mode=='window'?t('brkHelpWin'):t('brkHelpFlex')}</div></div><button class="sm${BRK.on?'':' ghost2'}" data-a=brkTog>${BRK.on?t('on'):t('off')}</button></div>${BRK.on?`<div class=set style="margin-top:12px"><select id=bmode><option value=flex${BRK.mode=='flex'?' selected':''}>${t('brkFlex')}</option><option value=window${BRK.mode=='window'?' selected':''}>${t('brkWin')}</option></select></div>${BRK.mode=='window'?`<div class=set><label class=tl>${t('brkFrom')}${tmIn('bst',BRK.start||'12:00')}</label><label class=tl>${t('brkTo')}${tmIn('ben',BRK.end||'13:00')}</label></div>`:''}<div class=set><label class=tl>${t('brkMin')}<input type=number id=bmin min=5 max=240 step=5 value="${BRK.min}"></label><label class=tl>${t('brkPaidL')}<select id=bpaid><option value=0${BRK.paid?'':' selected'}>${t('brkUnpaid')}</option><option value=1${BRK.paid?' selected':''}>${t('brkPaid')}</option></select></label></div><button class=btn data-a=brkSave>${t('save')}</button>`:''}</div>`;
+const saveBrk=async o=>{try{const r=await sb.rpc('set_break_settings',{p_on:o.on,p_mode:o.mode,p_start:o.mode=='window'?o.start:null,p_end:o.mode=='window'?o.end:null,p_min:o.min,p_paid:o.paid});if(r.error)throw r.error;BRK=o;st.err='';st.msg=t('brkSaved')}catch{st.msg='';st.err=t('brkFail')}render()};
 const IC={home:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>',hist:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',sched:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',prof:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',set:'<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/>',pin:'<path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',cam:'<path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L17 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="4"/>'};
 const ico=k=>`<svg viewBox="0 0 24 24" width=24 height=24 fill=none stroke=currentColor stroke-width=1.9 stroke-linecap=round stroke-linejoin=round aria-hidden=true>${IC[k]}</svg>`;
 const ava=n=>{let h=0;for(const c of String(n))h=(h*31+c.charCodeAt(0))%360;return `<span class=ava style="background:hsl(${h} 52% 40%)">${esc(String(n).split(' ').filter(Boolean).map(w=>w[0]).slice(0,2).join('').toUpperCase())}</span>`};
@@ -283,10 +330,10 @@ function initMap(){
 const mapRows=async rows=>{
  const paths=rows.flatMap(r=>[r.photo_path,r.left_photo_path,r.prev_photo_path]).filter(Boolean),u={};
  if(paths.length)((await sb.storage.from('photos').createSignedUrls(paths,3600)).data||[]).forEach(d=>{u[d.path]=d.signedUrl});
- return rows.map(r=>({id:r.id,empId:r.user_id,name:(r.profiles&&r.profiles.full_name)||me.name,date:r.day,time:hmOf(r.arrived_at),out:hmOf(r.left_at),smode:r.sched_mode,ss:hh(r.sched_start),se:hh(r.sched_end),dm:r.delta_min,lat:r.lat,lng:r.lng,dist:r.dist_m,inz:r.in_zone,site:(r.sites&&r.sites.name)||'',rt:r.status=='retake',prev:u[r.prev_photo_path]||'',photo:u[r.photo_path]||'',lphoto:u[r.left_photo_path]||'',ok:r.status=='confirmed',no:r.status=='rejected',c:r.comment||''}))};
+ return rows.map(r=>({id:r.id,empId:r.user_id,name:(r.profiles&&r.profiles.full_name)||me.name,date:r.day,time:hmOf(r.arrived_at),out:hmOf(r.left_at),smode:r.sched_mode,ss:hh(r.sched_start),se:hh(r.sched_end),dm:r.delta_min,lat:r.lat,lng:r.lng,dist:r.dist_m,inz:r.in_zone,site:(r.sites&&r.sites.name)||'',rt:r.status=='retake',prev:u[r.prev_photo_path]||'',photo:u[r.photo_path]||'',lphoto:u[r.left_photo_path]||'',ok:r.status=='confirmed',no:r.status=='rejected',c:r.comment||'',ba:r.break_allow,bp:r.break_paid,br:(r.breaks||[]).map(b=>({s:b.start_at,e:b.end_at}))}))};
 const B={
- async mine(){const {data,error}=await sb.from('checkins').select('*,sites(name)').eq('user_id',me.id).order('day',{ascending:false});if(error)throw error;return mapRows(data)},
- async all(){const {data,error}=await sb.from('checkins').select('*,profiles(full_name),sites(name)').order('day',{ascending:false}).limit(200);if(error)throw error;return mapRows(data)},
+ async mine(){const {data,error}=await sb.from('checkins').select('*,sites(name),breaks(*)').eq('user_id',me.id).order('day',{ascending:false});if(error)throw error;return mapRows(data)},
+ async all(){const {data,error}=await sb.from('checkins').select('*,profiles(full_name),sites(name),breaks(*)').order('day',{ascending:false}).limit(200);if(error)throw error;return mapRows(data)},
  async add(path,pos){const r=await sb.from('checkins').insert({user_id:me.id,photo_path:path,lat:pos?pos.lat:null,lng:pos?pos.lng:null,acc:pos?pos.acc:null});if(r.error)throw r.error},
  async decide(id,o){const r=await sb.rpc('decide_checkin',{p_id:id,p_status:o.ok?'confirmed':'rejected',p_comment:o.c||null});if(r.error)throw r.error},
  async leave(path,pos){const r=await sb.rpc('leave_work',{p_photo:path,p_lat:pos?pos.lat:null,p_lng:pos?pos.lng:null});if(r.error)throw r.error},
@@ -297,12 +344,44 @@ const B={
 const stat=x=>x.rt?`<span class="bdg w">${t('retakeNeed')}</span>`:x.ok?`<span class=bdg>${t('confirmed')}</span>`:x.no?`<span class="bdg r">${t('rejected')}</span>`:`<span class="bdg w">${t('pending')}</span>`;
 const timeB=x=>{if(x.smode=='any')return `<span class=bdg>${t('flex')}</span>`;if(x.smode=='off')return `<span class="bdg w">${t('dayOff')}</span>`;const d=x.dm;return d==null?'':d>0?`<span class="bdg w">${t('late',fm(d))}</span>`:`<span class=bdg>${t('onTime')}${d<0?t('early',fm(-d)):''}</span>`};
 const balB=x=>{const b=bal(x);return b==null?'':b>0?`<span class=bdg>${t('extra',fm(b))}</span>`:b<0?`<span class="bdg w">${t('short',fm(-b))}</span>`:`<span class=bdg>${t('onPlan')}</span>`};
-const inf=x=>`<div class=mu>${t('arr',esc(x.time))}${x.out?t('left',esc(x.out)):''}</div>${dur(x)?`<div class=mu>${t('worked',dur(x))}</div>`:''}`;
+const inf=x=>{const bt=brkTaken(x),ov=x.ba!=null&&bt>x.ba?bt-x.ba:0,op=brkOpen(x);return `<div class=mu>${t('arr',esc(x.time))}${x.out?t('left',esc(x.out)):''}</div>${dur(x)?`<div class=mu>${t('worked',dur(x))}</div>`:''}${bt||op?`<div class="mu${ov?' wn':''}">${op?t('brkOnNow'):t('brkTaken',fm(bt))}${ov?' ('+t('brkOver',fm(ov))+')':''}</div>`:''}`};
 const pics=(x,i)=>`<div class=pics>${[['photo','pArr'],['lphoto','pOut'],['prev','pArr']].map(([k,a])=>ph(x[k])?`<img src="${ph(x[k])}" alt="${t(a)}" data-a=img data-i=${i} data-k=${k}>`:'').join('')}</div>`;
 const conf=x=>x.rt?stat(x):(x.ok||x.no?stat(x):'')+(x.no&&x.c?`<div class=rc>${esc(x.c)}</div>`:'')+(x.ok?'':`<div class=acts><button class=sm data-a=ok data-id="${esc(x.id)}">${t('confirm')}</button>${x.no?'':`<button class="sm rj" data-a=rj data-id="${esc(x.id)}">${t('reject')}</button>`}<button class="sm ghost" data-a=rt data-id="${esc(x.id)}">${t('retakeBtn')}</button></div>`)+(st.rej==x.id?`<div class=rf><textarea id=rcm maxlength=200 placeholder="${t('rejPh')}"></textarea><button class="sm rj" data-a=rjgo data-id="${esc(x.id)}">${t('rejGo')}</button><button class=lnk data-a=rjno>${t('cancel')}</button></div>`:'');
 const langB=()=>`<div class=lang><button data-a=lang data-l=lt class="${lang=='lt'?'on':''}">LT</button><button data-a=lang data-l=en class="${lang=='en'?'on':''}">EN</button></div>`;
 const bigBtn=(f,lab,off)=>`<label class="big${off?' off':''}" for=${f}><span>${st.busy?t('sending'):ico('cam')+lab}</span></label>`;
 
+const b64=s=>{const r=atob((s+'='.repeat((4-s.length%4)%4)).replace(/-/g,'+').replace(/_/g,'/'));return Uint8Array.from([...r].map(c=>c.charCodeAt(0)))};
+const ntSupported=()=>'serviceWorker' in navigator&&'PushManager' in window&&'Notification' in window;
+const standalone=()=>navigator.standalone===true||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches);
+async function ntLoad(){
+ NP.perm=('Notification' in window)?Notification.permission:'unsupported';NP.sub=false;
+ try{const reg=await navigator.serviceWorker.ready,s=await reg.pushManager.getSubscription();if(s){const {data}=await sb.from('push_subs').select('id').eq('endpoint',s.endpoint).eq('user_id',me.id).maybeSingle();NP.sub=!!data}}catch{}
+ try{const {data}=await sb.from('notif_prefs').select('*').eq('user_id',me.id).maybeSingle();NP.prefs=data||null}catch{}
+}
+async function ntEnable(){
+ try{
+  if(!VK){st.err=t('ntNoCfg');return}
+  const perm=await Notification.requestPermission();NP.perm=perm;if(perm!='granted'){st.err=t('ntDenied');return}
+  const reg=await navigator.serviceWorker.ready;let sub=await reg.pushManager.getSubscription();
+  if(!sub)sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64(VK)});
+  const j=sub.toJSON();
+  let r=await sb.from('push_subs').upsert({user_id:me.id,endpoint:j.endpoint,p256dh:j.keys.p256dh,auth_key:j.keys.auth},{onConflict:'endpoint'});if(r.error)throw r.error;
+  r=await sb.from('notif_prefs').upsert({user_id:me.id,lang},{onConflict:'user_id'});if(r.error)throw r.error;
+  st.msg=t('ntSaved');lsSet('atv_nt_'+me.id,1)
+ }catch(e){st.err=t('ntFail')+' ('+((e&&e.message)||'?')+')'}
+}
+async function ntDisable(){try{const reg=await navigator.serviceWorker.ready,s=await reg.pushManager.getSubscription();if(s){await sb.from('push_subs').delete().eq('endpoint',s.endpoint);await s.unsubscribe()}lsSet('atv_nt_'+me.id,0);st.msg=t('ntOffDone')}catch{st.err=t('ntFail')}}
+async function ntAuto(){try{if(!ntSupported()||Notification.permission!='granted'||!lsGet('atv_nt_'+me.id,0))return;const reg=await navigator.serviceWorker.ready,s=await reg.pushManager.getSubscription();if(!s)return;const j=s.toJSON();await sb.from('push_subs').upsert({user_id:me.id,endpoint:j.endpoint,p256dh:j.keys.p256dh,auth_key:j.keys.auth},{onConflict:'endpoint'})}catch{}}
+const ntCard=()=>{
+ const kinds=me.role=='employer'?[['emp_late','nEmpLate']]:[['pre_work','nPre'],['late','nLate'],['pre_end','nPreEnd'],['forgot_out','nForgot']].concat(BRK.on?[['pre_break','nPreBrk'],['break_end','nBrkEnd']]:[],[['retake','nRetake']]);
+ let h=`<div class=card><b>${t('ntT')}</b><div class=mu>${t('ntHelp')}</div>`;
+ if(!ntSupported()||NP.perm=='unsupported')h+=`<div class=mu style="margin-top:8px">${/iPhone|iPad|iPod/.test(navigator.userAgent)&&!standalone()?t('ntIosHint'):t('ntUnsupported')}</div>`;
+ else if(NP.perm=='denied')h+=`<div class=rc style="margin-top:8px">${t('ntDenied')}</div>`;
+ else if(!NP.sub)h+=`<button class=btn data-a=ntOn>${t('ntEnable')}</button>`;
+ else{h+=`<div style="margin-top:8px">${kinds.map(([k,l])=>`<label class=chk><input type=checkbox data-a=ntp data-k=${k}${(NP.prefs?NP.prefs[k]!==false:true)?' checked':''}> ${t(l)}</label>`).join('')}</div>`;
+  if(me.role=='employee')h+=`<label class=tl style="margin-top:6px">${t('lead')}<input type=number id=ntlead min=0 max=120 step=5 value="${NP.prefs?NP.prefs.lead_min:15}"></label>`;
+  h+=`<div class=acts><button class="sm ghost" data-a=ntTest>${t('ntTest')}</button><button class="sm ghost" data-a=ntOff>${t('ntDisable')}</button></div>`}
+ return h+'</div>'};
 const V={};
 V.login=()=>`<div class=lg><div class=logo>✓</div><h1>Atvykau</h1><p class=mu>${t('tag')}</p>
 <form id=f><label>${t('user')}<input id=em type=text autocomplete=off autocapitalize=none autocorrect=off spellcheck=false placeholder="${t('ph')}" required></label>
@@ -315,7 +394,7 @@ const e0=async()=>{
  const rtb=rt?`<div class=card><b>${t('retakeTitle')}</b><div class=cen style="margin-top:12px">${bigBtn('camr',t('retakeBtn2'),st.busy).replace('class="big','class="big sm2')}<br><label class=lnk for=galr>${t('noCam')}</label></div></div>`:'';
  if(!x)return hero+gpsCard()+rtb+`<div class=cen>${bigBtn('cam',t('btnIn'),st.busy)}<p class=mu>${t('hint')}</p><label class=lnk for=gal>${t('noCam')}</label></div>`;
  cache=[x];const d=x.dm,ln=x.smode=='any'?t('planAny'):x.smode=='off'?t('planOff'):d==null?'':d>0?t('lateYou',fm(d),x.ss):t('onTimeYou');
- return hero+gpsCard()+rtb+`<div class=card><b>${t('arrivedAt',esc(x.time))}</b>${ln?`<div class=mu>${ln}</div>`:''}${x.out?`<div class=mu>${t('leftAt',esc(x.out))}${dur(x)?'. '+t('worked',dur(x)):''}</div><div style="margin-top:8px">${balB(x)}</div>`:''}${x.no?`<div class=rc>${t('rejNote')}${x.c?': '+esc(x.c):''}</div>`:''}${pics(x,0)}</div>`+
+ return hero+gpsCard()+rtb+`<div class=card><b>${t('arrivedAt',esc(x.time))}</b>${ln?`<div class=mu>${ln}</div>`:''}${x.out?`<div class=mu>${t('leftAt',esc(x.out))}${dur(x)?'. '+t('worked',dur(x)):''}</div><div style="margin-top:8px">${balB(x)}</div>`:''}${x.no?`<div class=rc>${t('rejNote')}${x.c?': '+esc(x.c):''}</div>`:''}${pics(x,0)}</div>`+(x.out?'':brkCard(x))+
  (x.out?'':`<div class=cen>${bigBtn('camo',t('btnOut'),st.busy).replace('class="big','class="big sm2')}<p class=mu>${t('outHint')}</p><label class=lnk for=galo>${t('noCam')}</label></div>`);
 };
 const e1=async()=>{
@@ -361,9 +440,11 @@ const siteEd=()=>`<button class=lnk data-a=back>${t('back')}</button><h2>${t('si
 V.set=async()=>{
  if(st.sub=='site'&&SE)return siteEd();
  if(st.sub=='about')return `<button class=lnk data-a=back>${t('back')}</button>`+aboutBody();
+ if(!NP.ok){await ntLoad();NP.ok=true}
  const th=(k,l)=>`<button class="btn2${theme==k?' sel':''}" data-a=theme data-v=${k}>${t(l)}</button>`;
- let h=`<h2>${t('setT')}</h2><div class=card><b>${t('theme')}</b><div>${th('auto','thAuto')}${th('light','thLight')}${th('dark','thDark')}</div></div>`;
+ let h=`<h2>${t('setT')}</h2><div class=card><b>${t('theme')}</b><div>${th('auto','thAuto')}${th('light','thLight')}${th('dark','thDark')}</div></div>`+ntCard();
  if(me.role=='employer')h+=`<div class=card><b>${t('defHours')}</b><div class=mu>${t('defHelp2')}</div><div class=set><label class=tl>${t('startL')}${tmIn('wsv',WS)}</label><label class=tl>${t('endL')}${tmIn('wev',WE)}</label><button class=sm data-a=ws>${t('save')}</button></div></div>
+${brkSettings()}
 <div class=card><div class=row><div class=g><b>${t('strictT')}</b><div class=mu>${t('strictH')}</div></div><button class="sm${STRICT?'':' ghost2'}" data-a=strict>${STRICT?t('on'):t('off')}</button></div></div>
 <h3>${t('sitesT')}</h3>`+(SITES.length?SITES.map(s=>`<div class="card row"><span class=ava style="background:var(--pr)">${ico('pin').replace('width=24 height=24','width=20 height=20')}</span><div class=g><b>${esc(s.name)}</b><div class=mu>${(+s.lat).toFixed(5)}, ${(+s.lng).toFixed(5)}, ${+s.radius_m} m</div></div><button class=sm data-a=siteEdit data-id="${esc(s.id)}">✎</button></div>`).join(''):`<div class="card mu">${t('noSites')}</div>`)+`<button class=btn2 data-a=siteNew>${t('addSite')}</button>`;
  h+=`<button class="card item" data-a=aboutOpen style="margin-top:14px"><span class=g><b>${t('about')}</b></span><span class=chev>›</span></button>`;
@@ -373,28 +454,31 @@ async function loadData(){
  const [a,b,c,d,e]=await Promise.all([sb.from('sites').select('*').order('name'),sb.from('schedules').select('*'),sb.from('employee_sites').select('*'),sb.from('settings').select('*').eq('id',1).maybeSingle(),sb.from('schedule_days').select('*').gte('day',from)]);
  OV={};(e.data||[]).forEach(r=>{(OV[r.user_id]=OV[r.user_id]||{})[r.day]=r});
  SITES=a.data||[];SCH={};(b.data||[]).forEach(r=>(SCH[r.user_id]=SCH[r.user_id]||[]).push(r));ES={};(c.data||[]).forEach(r=>(ES[r.user_id]=ES[r.user_id]||[]).push(r.site_id));
- if(d.data){if(d.data.work_start)WS=hh(d.data.work_start);WE=hh(d.data.work_end);STRICT=!!d.data.strict_gps}
+ if(d.data){if(d.data.work_start)WS=hh(d.data.work_start);WE=hh(d.data.work_end);STRICT=!!d.data.strict_gps;BRK={on:!!d.data.break_on,mode:d.data.break_mode||'flex',start:hh(d.data.break_start),end:hh(d.data.break_end),min:d.data.break_min||30,paid:!!d.data.break_paid}}
 }
 function csv(){
  const q=v=>{let s=String(v==null?'':v);if(/^[=+\-@]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'};
- const rows=[[t('dateL'),t('empL'),t('cArr'),t('cOut'),t('cMin'),t('cStart'),t('cEnd'),t('cDelta'),t('cBal'),t('cSite'),t('cDist'),t('cStatus'),t('cComment')]].concat(cache.map(x=>{const m=mins(x.out)-mins(x.time),b=bal(x);return[x.date,x.name,x.time,x.out,m>0?m:'',x.ss,x.se,x.smode=='time'?x.dm:'',b==null?'':b,x.site,x.dist,x.rt?'retake':x.ok?'confirmed':x.no?'rejected':'pending',x.c]}));
+ const rows=[[t('dateL'),t('empL'),t('cArr'),t('cOut'),t('cMin'),t('cBrk'),t('cStart'),t('cEnd'),t('cDelta'),t('cBal'),t('cSite'),t('cDist'),t('cStatus'),t('cComment')]].concat(cache.map(x=>{const m=wmin(x),b=bal(x);return[x.date,x.name,x.time,x.out,m>0?m:'',brkTaken(x),x.ss,x.se,x.smode=='time'?x.dm:'',b==null?'':b,x.site,x.dist,x.rt?'retake':x.ok?'confirmed':x.no?'rejected':'pending',x.c]}));
  const b=new Blob(['\ufeff'+rows.map(r=>r.map(q).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');
  a.href=URL.createObjectURL(b);a.download='atvykau-'+today()+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
 }
 const topBar=()=>`<div class=top><span class=who>${ava(me.name)}<span><b>${esc(me.name)}</b><small>${t('r_'+me.role)}</small></span></span><div class=tr>${langB()}<button class=gear data-a=gear aria-label="${t('setT')}">${ico('set')}</button></div></div>`;
 async function render(){
- const n=++seq,m=$('#m'),nav=$('#n');
+ const n=++seq,m=$('#m'),nav=$('#n'),top=$('#top');
  document.documentElement.lang=lang=='lt'?'lt':'en-GB';
- if(!me){nav.innerHTML='';m.innerHTML=`<div class=top><span></span>${langB()}</div>`+V.login();$('#lb').innerHTML='';lastKey='';return}
+ if(!me){nav.innerHTML='';top.innerHTML=`<div class=top><span></span>${langB()}</div>`;m.innerHTML=V.login();$('#lb').innerHTML='';lastKey='';return}
+ top.innerHTML=topBar();
  nav.innerHTML=['home','hist','sched','prof'].map(k=>`<button data-a=tab data-t=${k} class="${tab==k?'on':''}">${ico(k)}<span>${t(k)}</span></button>`).join('');
  const key=tab+'|'+st.sub,fresh=key!=lastKey;
- if(fresh){m.innerHTML=topBar()+'<div class=spin></div>';m.scrollTop=0;lastKey=key}
+ if(fresh){m.innerHTML='<div class=spin></div>';m.scrollTop=0;lastKey=key}
  let h;try{h=await V[tab]()}catch{h=`<div class=er>${t('loadFail')}</div>`}
  if(n!=seq)return;
- m.innerHTML=topBar()+`<div${fresh?' class=fade':''}>${h}</div>`;
+ const keep=m.scrollTop;
+ m.innerHTML=`<div${fresh?' class=fade':''}>${h}</div>`;m.scrollTop=fresh?0:keep;
  if(st.msg){toast('ok',st.msg);st.msg=''}if(st.err){toast('er',st.err);st.err=''}
  $('#lb').innerHTML=st.lb?`<div class=lbx data-a=lbx><img src="${st.lb}" alt=""></div>`:'';
  if(tab=='set'&&st.sub=='site'&&SE)initMap();else if(MAP){MAP.remove();MAP=null}
+ tickBrk();
 }
 async function login(u,pw){
  if(/JUSU/.test(SUPABASE_URL)){st.err=t('noCfg');return render()}
@@ -408,8 +492,8 @@ async function start(u){
  me={id:u.id,user:p.username,name:p.full_name,role:p.role};
  await loadData();
  if(me.role=='employer'){const {data:e}=await sb.from('profiles').select('id,full_name').eq('role','employee').order('full_name');EMP=(e||[]).map(x=>({id:x.id,name:x.full_name}))}
- tab='home';st.err=st.msg='';render();
- if(me.role=='employee')gpsInit().then(()=>{if(GPS!='granted')askGps()});
+ tab='home';st.err=st.msg='';window.scrollTo(0,0);NP.ok=false;ntAuto();render();
+ if(me.role=='employee')gpsInit().then(()=>{if(GPS!='granted')askGps().then(()=>{if(RECHK&&GPS!='granted')toast('er',t('gpsStill'))})});
 }
 async function doIn(f){
  st.busy=1;st.err=st.msg='';render();
@@ -435,7 +519,7 @@ const TM=/^\d\d:\d\d$/;
 document.addEventListener('click',async e=>{
  const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a;
  if(a=='tab'){tab=b.dataset.t;st.sub='';ED=null;SE=null;st.msg=st.err='';render()}
- else if(a=='lang'){lang=b.dataset.l=='en'?'en':'lt';lsSet('atv_lang',lang);st.msg=st.err='';render()}
+ else if(a=='lang'){lang=b.dataset.l=='en'?'en':'lt';lsSet('atv_lang',lang);st.msg=st.err='';if(me&&NP.sub)sb.from('notif_prefs').upsert({user_id:me.id,lang},{onConflict:'user_id'}).then(()=>{},()=>{});render()}
  else if(a=='img'){st.lb=ph((cache[+b.dataset.i]||{})[b.dataset.k]);render()}
  else if(a=='lbx'){st.lb='';render()}
  else if(a=='ok'){b.disabled=true;try{await B.decide(b.dataset.id,{ok:1});st.err=''}catch{st.err=t('cfmFail')}render()}
@@ -450,7 +534,13 @@ document.addEventListener('click',async e=>{
  else if(a=='strict'){try{const r=await sb.rpc('set_strict_gps',{p:!STRICT});if(r.error)throw r.error;STRICT=!STRICT;st.err=''}catch{st.err=t('saveFail')}render()}
  else if(a=='rt'){b.disabled=true;try{await B.askRetake(b.dataset.id);st.err=''}catch{st.err=t('rtFail')}render()}
  else if(a=='csv')csv();
- else if(a=='gps'){await askGps()}
+ else if(a=='gps'){const dn=GPS=='denied'||GPS=='unsupported';await getPos();if(GPS!='granted'&&dn){try{sessionStorage.setItem('atv_recheck','1')}catch{}location.reload();return}render()}
+ else if(a=='bs'||a=='be'){b.disabled=true;try{const r=await sb.rpc(a=='bs'?'start_break':'end_break');if(r.error)throw r.error;st.err='';st.msg=t(a=='bs'?'brkStarted':'brkEnded')}catch(e){const m=String(e&&e.message||'');st.msg='';st.err=m.includes('Ne pertraukos laikas')?t('brkErrWin',BRK.start,BRK.end):m.includes('išnaudota')?t('brkErrUsed'):t('brkFailG')}render()}
+ else if(a=='brkTog'){saveBrk({...BRK,on:!BRK.on})}
+ else if(a=='brkSave'){const o={on:BRK.on,mode:$('#bmode').value,start:($('#bst')||{}).value||'',end:($('#ben')||{}).value||'',min:Math.max(5,Math.min(240,+$('#bmin').value||30)),paid:$('#bpaid').value=='1'};if(o.mode=='window'&&(!TM.test(o.start)||!TM.test(o.end)||o.end<=o.start)){st.err=t('brkBadWin');return render()}saveBrk(o)}
+ else if(a=='ntOn'){b.disabled=true;await ntEnable();NP.ok=false;render()}
+ else if(a=='ntOff'){await ntDisable();NP.ok=false;render()}
+ else if(a=='ntTest'){try{const r=await sb.from('notif_queue').insert({user_id:me.id,kind:'test',title:lang=='lt'?'Bandomasis pranešimas':'Test notification',body:lang=='lt'?'Pranešimai veikia! ✅':'Notifications are working! ✅'});if(r.error)throw r.error;st.msg=t('ntTestSent')}catch{st.err=t('ntFail')}render()}
  else if(a=='ghow'){st.gh=st.gh?0:1;render()}
  else if(a=='siteNew'){SE={id:'',name:'',lat:54.6872,lng:25.2797,z:13,r:150};st.sub='site';st.err=st.msg='';render();getPos().then(p=>{if(p&&MAP&&SE&&!SE.id&&!SE.moved)MAP.setView([p.lat,p.lng],17)})}
  else if(a=='siteEdit'){const s=SITES.find(x=>x.id==b.dataset.id);if(s){SE={id:s.id,name:s.name,lat:+s.lat,lng:+s.lng,z:17,r:+s.radius_m};st.sub='site';st.err=st.msg='';render()}}
@@ -475,7 +565,7 @@ document.addEventListener('click',async e=>{
  else if(a=='ccl'){CAL.sel=[];render()}
  else if(a=='capply'){try{const rows=CAL.sel.map(ds=>({user_id:ED.uid,day:ds,mode:CAL.mode,start_time:CAL.mode=='time'?(CAL.time||WS):null,end_time:CAL.mode=='time'&&CAL.end?CAL.end:null})),r=await sb.from('schedule_days').upsert(rows,{onConflict:'user_id,day'});if(r.error)throw r.error;await loadData();CAL.sel=[];st.err='';st.msg=t('calSaved')}catch{st.err=t('saveFail')}render()}
  else if(a=='creset'){try{const r=await sb.from('schedule_days').delete().eq('user_id',ED.uid).in('day',CAL.sel);if(r.error)throw r.error;await loadData();CAL.sel=[];st.err='';st.msg=t('calSaved')}catch{st.err=t('saveFail')}render()}
- else if(a=='out'){await sb.auth.signOut();me=null;EMP=[];tab='home';st.err=st.msg='';render()}
+ else if(a=='out'){try{const reg=await navigator.serviceWorker.ready,s=await reg.pushManager.getSubscription();if(s)await sb.from('push_subs').delete().eq('endpoint',s.endpoint)}catch{}NP.ok=false;NP.prefs=null;await sb.auth.signOut();me=null;EMP=[];tab='home';st.err=st.msg='';render()}
  else if(a=='clr'){flt={d:'',e:''};render()}
 });
 document.addEventListener('submit',e=>{if(e.target.id=='f'){e.preventDefault();login($('#em').value,$('#pw').value)}});
@@ -488,11 +578,17 @@ document.addEventListener('change',e=>{const x=e.target,i=x.id,a=x.dataset.a,n=+
  else if(i=='qt'){ED.q=x.value}else if(i=='qe'){ED.qe=x.value}else if(i=='qr'){ED.rest=x.checked?1:0}
  else if(i=='cmode'){CAL.mode=x.value;render()}
  else if(i=='ctime'){CAL.time=x.value}else if(i=='cend'){CAL.end=x.value}
+ else if(i=='bmode'){const o=BRK;BRK={...o,mode:x.value,min:+($('#bmin')||{value:o.min}).value||o.min,paid:($('#bpaid')||{value:o.paid?'1':'0'}).value=='1',start:($('#bst')||{value:o.start}).value||o.start||'12:00',end:($('#ben')||{value:o.end}).value||o.end||'13:00'};render()}
+ else if(a=='ntp'){const k=x.dataset.k;NP.prefs=NP.prefs||{};NP.prefs[k]=x.checked;sb.from('notif_prefs').upsert({user_id:me.id,[k]:x.checked},{onConflict:'user_id'}).then(()=>{},()=>{})}
+ else if(i=='ntlead'){const v=Math.max(0,Math.min(120,+x.value||0));NP.prefs=NP.prefs||{};NP.prefs.lead_min=v;sb.from('notif_prefs').upsert({user_id:me.id,lead_min:v},{onConflict:'user_id'}).then(()=>{},()=>{})}
 });
 [['cam',doIn],['gal',doIn],['camo',doOut],['galo',doOut],['camr',doRetake],['galr',doRetake]].forEach(([id,fn])=>$('#'+id).addEventListener('change',e=>{const f=e.target.files[0];e.target.value='';if(f&&!st.busy)fn(f)}));
 document.addEventListener('input',e=>{if(e.target.id=='sr'&&SE){SE.r=+e.target.value;const v=$('#srv');if(v)v.textContent=SE.r+' m';if(MAPC)MAPC.setRadius(SE.r)}});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&me&&me.role=='employee'&&GPS!='granted')gpsInit().then(()=>{if(GPS!='denied'&&GPS!='unsupported')askGps();else render()})});
+try{RECHK=sessionStorage.getItem('atv_recheck')?1:0;sessionStorage.removeItem('atv_recheck')}catch{}
+document.addEventListener('focusout',()=>setTimeout(()=>{window.scrollTo(0,0);if(!me)$('#m').scrollTop=0},80));
+addEventListener('offline',()=>toast('er',t('offline')));addEventListener('online',()=>toast('ok',t('online')));
 applyTheme();render();
 (async()=>{try{const {data}=await sb.auth.getSession();if(data.session)await start(data.session.user)}catch{}})();
-if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
+if('serviceWorker' in navigator){const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&!window.__rl){window.__rl=1;location.reload()}});addEventListener('load',()=>navigator.serviceWorker.register('sw.js'))}
 </script></body></html>
